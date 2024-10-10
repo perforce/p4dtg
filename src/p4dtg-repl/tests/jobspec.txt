@@ -1,0 +1,272 @@
+# Copyright 2005 Perforce Software.  All rights reserved.
+#
+# A Perforce Job Spec Specification.
+#
+#  Updating this form can be dangerous!
+#  See 'p4 help jobspec' for proper directions.
+
+Fields:
+	101 Job word 32 required
+	102 Status select 10 required
+	106 Type select 10 optional
+	108 Severity select 10 optional
+	119 Priority select 10 optional
+	118 Difficulty select 20 optional
+	107 Subsystem select 10 optional
+	120 Dependency text 32 optional
+	113 Release select 10 optional
+	109 OwnedBy word 32 optional
+	103 ReportedBy word 32 required
+	116 ModifiedBy word 32 always
+	104 ReportedDate date 20 once
+	110 ModifiedDate date 20 always
+	114 CommitRelease text 20 optional
+	122 3rdPartyJob word 20 optional
+	124 FixVerifiedBy select 32 optional
+	112 CallNumbers text 64 optional
+	111 Customers text 64 optional
+	105 Description text 72 required
+	123 Categories text 72 optional
+	115 DevNotes text 72 optional
+	117 Diagnosis text 72 optional
+	121 History text 72 optional
+	125 InterestedIn text 72 optional
+	126 DuplicateOf word 32 optional
+	129 DuplicateJobs text 72 optional
+	127 ClosedOwner word 32 optional
+	128 RelatedJobs text 72 optional
+	130 Fixes line 72 optional
+	131 ClosedBy word 32 optional
+	132 Attachments text 72 optional
+	133 DepotAreas text 72 optional
+	134 Tuserid word 32 optional
+	135 Tjobid word 32 optional
+	136 Tchangelist word 32 optional
+	137 Tdepotpath line 72 optional
+	138 Tfilepath line 72 optional
+	144 Tlistuserid text 72 optional
+	145 Tlistjobid text 72 optional
+	146 Tlistchangelist text 72 optional
+	147 Tlistdepotpath text 72 optional
+	148 Tlistfilepath text 72 optional
+	158	DTG_FIXES	text	0	optional
+	159	DTG_DTID	line	80	optional
+	160	DTG_DTISSUE	word	32	optional
+	161	DTG_DTMOD	date	20	optional
+	162	DTG_ERROR	text	0	optional
+
+Values:
+	Status open/triaged/inprogress/punted/closed/verified/suspended/duplicate/obsolete
+	Type BUG/SIR/problem/port/build/integration/todo
+	Severity A/B/C
+	Priority 00/10/20/30/88/99/high/medium/low/undefined
+	Difficulty undefined/easy/medium/hard
+	Subsystem ---most_used---/p4/p4v/p4p/p4web/p4sccnet/---products---/p4/p4admin/p4annotate/p4api/p4cw/p4diff/p4dti/p4dw/p4foroffice/p4ftp/p4is/p4merge/p4mpw/p4p/p4qt/p4ruby/p4sccnet/p4scc/p4gt/p4sql/p4tree/p4wsad/p4web/p4web2/p4wei/p4win/p4winmerge/p4v/win2v/revml/vcp/converter/installer/nt/training/reviewdaemon/jam/perfmerge/webkeeper/newproduct/---documentation---/doc/dochelp/p4help/technote/---internals---/calltrack/ketchup/marmite/syrup/website/kb/tools/---integrations---/projectbuilder/----dead----/jaw/jgui/process/misc
+	Release all/none/main/2005.1/2004.2/2004.1/2003.2/2003.1/2002.2/2002.1/2001.2/2001.1/2000.2/2000.1/99.2/99.1/98.2/98.1/97.3/97.2/unknown
+	FixVerifiedBy (na)/QA/BuildRelease/UI/Support
+	History ListOf(line)
+	InterestedIn SetOf(UserID())
+	DuplicateOf JobID()
+	DuplicateJobs SetOf(JobID())
+	ClosedOwner UserID()
+	RelatedJobs SetOf(JobID())
+	Fixes SetOf(Changelist())
+	ClosedBy UserID()
+	DepotAreas SetOf(DepotPath())
+	OwnedBy UserID()
+	ReportedBy UserID()
+	ModifiedBy UserID()
+	Attachments SetOf(FilePath())
+	Tuserid UserID()
+	Tjobid JobID()
+	Tchangelist Changelist()
+	Tdepotpath DepotPath()
+	Tfilepath FilePath()
+	Tlistuserid ListOf(UserID())
+	Tlistjobid ListOf(JobID())
+	Tlistchangelist ListOf(Changelist())
+	Tlistdepotpath ListOf(DepotPath())
+	Tlistfilepath ListOf(FilePath())
+
+
+Presets:
+	Status open
+	Type setme
+	Severity C
+	Subsystem setme
+	ReportedBy $user
+	ModifiedBy $user
+	ReportedDate $now
+	ModifiedDate $now
+	Description $blank
+
+Comments:
+	#
+	# Perforce Jobs at Perforce:
+	#
+	# Job:        unique job number.
+	#
+	# Status:     status of a job, tracking its movement.
+	#                open - initial state
+	#                triaged - reviewed and fix proposed
+	#                inprogress - being worked on
+	#                punted - no fix available
+	#                closed - fix entered into code line
+	#                suspended - put on hold
+	#                duplicate - different wording of an existing job
+	#                obsolete - features that no longer exist
+	#
+	# Type:       describes type of job.
+	#                BUG - reproducible problem
+	#                SIR - enhancement request
+	#                problem - unreproducible problem report
+	#                port - a porting request
+	#                build - a build request
+	#                integration - a request to integrate with other sw
+	#                todo - a coding/build/release task to do
+	#
+	# Severity:   identifies criticality or severity of a job
+	#                A -  data corruption, erroneous results, malfunction
+	#                     or performance constraint. Severity A bugs are
+	#                     subject to review by Development.  Severity may
+	#                     be downgraded with a specified reason.
+	#                B -  partial feature malfunction; system operational.
+	#                C -  minor nit, cosmetic defect, request for
+	#                     information, most sirs fit in this category.
+	#
+	# Priority:   used by release/development to manage priorities
+	#                99 -  not set
+	#                88 -  internal tracking
+	#                30 -  low
+	#                20 -  medium
+	#                10 -  high
+	#                00 -  highest
+	#
+	# Difficulty: development effort required to resolve a job
+	#                undefined/easy/medium/hard
+	#
+	# Subsystem:
+	#        p4          P4 & P4D (command line client & Perforce server)
+	#        p4admin     Administrator GUI tool
+	#        p4api       The C/C++ api
+	#        p4annotate  Time-lapse View
+	#        p4cw        CodeWarrior plug-in (specify Mac, Windows, or both)
+	#        p4diff      Windows diff tool
+	#        p4dti       Defect tracking integration by Ravenbrook
+	#        p4dw        Dreamweaver Plug-in (alpha)
+	#        p4foroffice Plug-in for MS Office by Robert Cowham
+	#        p4ftp       FTP client (a.k.a. p4ftpd, the Perforce ftp daemon)
+	#        p4gt        The Photoshop, Maya and 3DS plug-in
+	#        p4is        P4 Image Server (Now known as p4thumb)
+	#        p4merge     P4Merge (Mac, Linux and Windows Merge/Diff Client)
+	#        p4mpw       P4 for Mac MPW
+	#        p4p         Perforce Proxy
+	#        p4qt        P4QT (QT Development)
+	#        p4ruby      Ruby/P4API extension
+	#        p4scc       Old MS SCC API plug-in
+	#        p4sccnet    Latest MS SCC API plug-in
+	#        p4sql       SQL interface by Robin Gardner
+	#        p4tree      Revision Graph
+	#        p4web       Web client, embedded P4Web docs, online P4Web docs
+	#        p4web2      Rearchitected P4Web (currently unreleased)
+	#        p4wei       Windows Explorer Integration (p4exp)
+	#        p4win       Windows client
+	#        p4wsad      IBM Websphere Studio Application Developer plug-in
+	#        p4winmerge  P4WinMerge (Windows merge GUI)
+	#        p4v         P4V (Mac, Linux and Windows Visual Client)
+	#        win2v       P4Win to P4V transition
+	#        revml       Revision Markup Language (RevML/DTD) by Slaymaker
+	#        vcp         Version Copy (VCP) by Slaymaker
+	#        converter   VSS, PVCS, RCS converters
+	#        installer   The Windows installer
+	#        tools       Internal tools related to technical support
+	#        nt          NT-specific issues in more than one subsystem
+	#        training    Training materials and other training issues
+	#        p4help      Results of "p4 help"
+	#        doc         Online Perforce manuals
+	#        dochelp     Perforce Winhelp or other built-in help files
+	#        technote    Technote problems
+	#        calltrack   Internal calltrack system
+	#        marmite     Internal medical reimbursement system
+	#        ketchup     Internal time-off system
+	#        syrup       Internal customer tracking system
+	#        website     External web pages (not program documentation)
+	#        kb          Technical Support Knowledge Base.
+	#        process     How we do things here (to be retired)
+	#        misc        Catchall (to be retired)
+	#        jaw         Jaw problems & deficiencies (now defunct)
+	#        jgui        Java GUI (now defunct)
+	#
+	# Dependency:    Job dependencies across products. (manual entry)
+	#                One or more subsystems separated by spaces
+	#                (e.g., a P4 fix required by P4Win and P4WinMerge would
+	#                have the values "p4win p4winmerge" for this field).
+	#
+	# Release:       Where reported: none/all/2004.1/2003.2/2003.1/etc.
+	#                'all' - not tied to a Perforce release.
+	#                'none'- release is not known or not applicable.
+	#
+	#
+	# OwnedBy:       Who's fixing the bug. (manual entry)
+	#
+	# ReportedBy:    Who reported the bug. (automatic entry)
+	#
+	# ReportedDate:  When the bug was first entered. (automatic entry)
+	#
+	# ModifiedDate:  Last time the bug was updated. (automatic entry)
+	#
+	# CommitRelease: Target or promised release; used by developers.
+	#
+	# 3rdPartyJob:   Associated 3rd party problem report. (manual entry)
+	#                Acceptable templates,
+	#                   TOYO-GUInnn, TOYO-CMDnnn, TOYO-SCCnnn, TOYO-FTPnnn
+	#                   AppleProblemID-nnnnnnn, DSHADES-nnnnnn,
+	#                   Trolltech-Nnnnnn
+	#
+	# FixVerifiedBy: QA state of the job. (manual entry)
+	#                   (na)/QA/BuildRelease/UI/Support
+	#
+	# CallNumbers:   List of calltrack numbers. (manual or via calltrack)
+	#
+	# Customers:     Email address from calltrack number, one for one.
+	#
+	# Description:   Textual description. First 31 chars are significant,
+	#                be brief.
+	#
+	# Categories:    Defined by the Product Advocate for grouping of jobs.
+	#                The format of a categorization is:
+	#                  category/subcategory (who date)
+	#
+	#                A job can have multiple categorizations:
+	#                  compression/files (mshields 2003/06/11)
+	#                  filetypes/compressed (mshields 2003/06/11)
+	#
+	# DevNotes:      Developer's notes on the bug, explaining why it's not
+	#                fixed yet (or why it will never be fixed).
+	#
+	# Diagnosis:     Advice on how to diagnose problem, provided by the bug
+	#                reporter or the developer. How to reproduce the
+	#                problem, other behaviors that might be symptoms, or
+	#                where in the code to look for the problem.
+	#
+	# History: List of changes made to the Job over time
+	#
+	# InterestedIn: Users who wish to be notified of changes to job
+	#
+	# DuplicateOf: Job of which this is a duplicate
+	#
+	# DuplicateJobs: Jobs which duplicate this job
+	#
+	# ClosedOwner: The user to own then job when it is closed
+	#
+	# RelatedJobs: Jobs which may be associated with this job
+	#
+	# Fixes: Changelists which fix this job
+	#
+	# ClosedBy: User who marked this bug closed either directly or indirectly
+	#
+	# DepotAreas: Areas of the depot assumed to be the the cause of the job
+	#
+	# Attachements: Optional list of example, core, source, etc files
+	#
+	#### LIMIT LINES TO 80 COLUMNS ------------------------------------------ ####

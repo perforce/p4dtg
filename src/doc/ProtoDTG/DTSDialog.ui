@@ -1,0 +1,531 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>DTSDialog</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>DTSDialog</cstring>
+    </property>
+    <property name="enabled">
+        <bool>true</bool>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>694</width>
+            <height>637</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Perforce Defect Tracking Gateway Configuration Editor</string>
+    </property>
+    <property name="sizeGripEnabled">
+        <bool>true</bool>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>11</number>
+        </property>
+        <property name="spacing">
+            <number>6</number>
+        </property>
+        <widget class="QTabWidget">
+            <property name="name">
+                <cstring>dtsTabWidget</cstring>
+            </property>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>Widget9</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Edit Defect Tracking Source</string>
+                </attribute>
+                <widget class="QComboBox">
+                    <item>
+                        <property name="text">
+                            <string>Mercury Test Director</string>
+                        </property>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>P4 Jobs Defect Tracking</string>
+                        </property>
+                    </item>
+                    <property name="name">
+                        <cstring>dtsTypeCombo</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>320</x>
+                            <y>20</y>
+                            <width>220</width>
+                            <height>27</height>
+                        </rect>
+                    </property>
+                </widget>
+                <widget class="QGroupBox">
+                    <property name="name">
+                        <cstring>dtsServerGroup</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>40</x>
+                            <y>60</y>
+                            <width>420</width>
+                            <height>150</height>
+                        </rect>
+                    </property>
+                    <property name="title">
+                        <string>Server Connection Details</string>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>dtsServerServerLabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>20</x>
+                                <y>20</y>
+                                <width>50</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Server:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>dtsServerUserLabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>20</x>
+                                <y>50</y>
+                                <width>70</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>User Name:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>dtsServerPasswordLabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>20</x>
+                                <y>80</y>
+                                <width>70</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Password:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>dtsServerServerEdit</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>100</x>
+                                <y>20</y>
+                                <width>300</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>server:2345</string>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>dtsServerUserEdit</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>100</x>
+                                <y>50</y>
+                                <width>300</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>admin</string>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>dtsServerPasswordEdit</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>100</x>
+                                <y>80</y>
+                                <width>300</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                    </widget>
+                    <widget class="QPushButton">
+                        <property name="name">
+                            <cstring>dtsServerCheckButton</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>100</x>
+                                <y>110</y>
+                                <width>300</width>
+                                <height>30</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Check Connection and Retrieve Fields</string>
+                        </property>
+                    </widget>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>dtsNicknameEdit</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>90</x>
+                            <y>20</y>
+                            <width>210</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Beta Issues</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>dtsNicknameLabel</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>20</y>
+                            <width>63</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Nickname:</string>
+                    </property>
+                </widget>
+                <widget class="QGroupBox">
+                    <property name="name">
+                        <cstring>dtsFieldGroup</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>40</x>
+                            <y>270</y>
+                            <width>420</width>
+                            <height>160</height>
+                        </rect>
+                    </property>
+                    <property name="title">
+                        <string>Job Field and User Details</string>
+                    </property>
+                    <widget class="QComboBox">
+                        <item>
+                            <property name="text">
+                                <string>*Unknown*</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>DefectID</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>Job</string>
+                            </property>
+                        </item>
+                        <property name="name">
+                            <cstring>dtsFieldIDCombo</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>170</x>
+                                <y>30</y>
+                                <width>230</width>
+                                <height>27</height>
+                            </rect>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>dtsFieldModDateLabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>70</y>
+                                <width>150</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Modified Date Fieldname:</string>
+                        </property>
+                    </widget>
+                    <widget class="QComboBox">
+                        <item>
+                            <property name="text">
+                                <string>*Unknown*</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>ModifiedDate</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>ReviewedDate</string>
+                            </property>
+                        </item>
+                        <property name="name">
+                            <cstring>dtsFieldModDateCombo</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>170</x>
+                                <y>70</y>
+                                <width>230</width>
+                                <height>27</height>
+                            </rect>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>dtsFieldModByLabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>110</y>
+                                <width>150</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Modified By Fieldname:</string>
+                        </property>
+                    </widget>
+                    <widget class="QComboBox">
+                        <item>
+                            <property name="text">
+                                <string>*Unknown*</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>ModifiedBy</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>ReviewedBy</string>
+                            </property>
+                        </item>
+                        <property name="name">
+                            <cstring>dtsFieldModByCombo</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>170</x>
+                                <y>110</y>
+                                <width>230</width>
+                                <height>27</height>
+                            </rect>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>dtsFieldIDLabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>30</y>
+                                <width>150</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Defect ID Fieldname:</string>
+                        </property>
+                    </widget>
+                </widget>
+                <widget class="QComboBox">
+                    <item>
+                        <property name="text">
+                            <string>*UNKNOWN*</string>
+                        </property>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>WorkflowAlpha (unconfigured)</string>
+                        </property>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>WorkflowBeta</string>
+                        </property>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>WorkflowGama (unconfigured)</string>
+                        </property>
+                    </item>
+                    <property name="name">
+                        <cstring>dtsProjectCombo</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>130</x>
+                            <y>230</y>
+                            <width>280</width>
+                            <height>27</height>
+                        </rect>
+                    </property>
+                    <property name="currentItem">
+                        <number>0</number>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>dtsProjectLabel</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>40</x>
+                            <y>230</y>
+                            <width>70</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>For Project:</string>
+                    </property>
+                </widget>
+            </widget>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>Layout1</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>dtsHelpButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Help</string>
+                    </property>
+                    <property name="accel">
+                        <string>F1</string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>dtsSpacer1</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>dtsOkButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="accel">
+                        <string></string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>true</bool>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>dtsCancelButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property name="accel">
+                        <string></string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>dtsOkButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DTSDialog</receiver>
+        <slot>accept()</slot>
+    </connection>
+    <connection>
+        <sender>dtsCancelButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DTSDialog</receiver>
+        <slot>reject()</slot>
+    </connection>
+</connections>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

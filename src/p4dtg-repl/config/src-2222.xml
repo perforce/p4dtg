@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<DTGConfiguration
+    version="1"
+    updated="2007/00/02 23:33:42 UTC">
+    <DataSource
+        type="DTS"
+        plugin="Generic Jobs"
+        nickname="2222"
+        server="linux-ateague.perforce.com:2222"
+        user="dts_admin"
+        password=""
+        module="Jobs"
+        moddate_field="ChangeDate"
+        moduser_field="ChangeBy" />
+</DTGConfiguration>

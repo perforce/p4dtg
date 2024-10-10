@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<DTGConfiguration
+    version="1"
+    updated="2007/00/02 23:33:42 UTC">
+    <DataSource
+        type="SCM"
+        plugin="Perforce Jobs"
+        nickname="P4depot"
+        server="linux-ateague.perforce.com:1111"
+        user="scm_admin"
+        password=""
+        module="Jobs"
+        moddate_field="ModDate"
+        moduser_field="ModBy" />
+</DTGConfiguration>

@@ -1,0 +1,94 @@
+For the next release of P4DTG we're looking at adding the ability to segment servers across multiple defect tracking servers and vis versa. As such, here are the ideas for how this would be implemented.
+
+DataSource:
+	a specific Perforce server instance or
+	a specific project within a defect tracking server
+
+A DataSource can be segmented into multiple sources based on the value of a specific SELECT field.
+
+The segmentation of a DataSource can only be based on a single SELECT field and it must be the same field for all segments.
+
+A DataSource which is currently used in a mapping cannot be segmented.
+
+A DataSource which has segments defined cannot be used in a mapping, only the segments can be used.
+
+A DataSource which has no segments defined can be used in a mapping.
+
+Any given SELECT value can only be used in one segment.
+
+Once a segment has been used in a mapping, that segment can only be extended with additional values.
+
+The field used for segmentation should be mapped but is not required. This allows mapping of a segment to a data source which has an implicit value for the segmentation. This means that incomplete mapping of a SELECT field which is the segmentation field should be allowed.
+
+If possible the cross mapping should be checked to make sure that new defects created in either side could match the filter. Replication will check to make sure that the filter rules are not violated by new jobs/defects.
+
+If a DTS supports one product per project and there isn't a field that represents the segment. DTG should provide pseudo fields which contain information on the project/segment (name, server, project). This should probably be done in the DTG not in the individual plugin.
+
+Add a new jobspec field DTG_DTSID  to contain the source/segment information . This field would be empty or non-existent for current installation. If the field does not exist in the jobspec then disallow segmentation. This field would be check during replication to catch cross-contamination. proj_find_defects might want to include this field as part of its selection criteria.
+
+The initial version of this supports using SELECT fields for the filter. Future version may want to support using WORD fields.
+
+The segmentation field should be identified in the mapping editor in some way
+
+The validation check should be expanded to review the filter and mapping combination
+
+What happens if the filtering field value is changed?
+
+Creation of new job/defect:
+
+  If new job, and defect fail filters, then mark job and continue
+  If new defect, and job fails filters, then log and skip
+
+Retrieving corresponding job for a defect should also check the DTG_DSID field
+
+Filtering process in process_defect:
+  If the defect doesn't match the filter, skip the defect
+  If the corresponding defect doesn't match the other filter, fail out defect
+  process unification of defects
+  If the resulting defect doesn't match the filter, fail out defect and revert job/defect
+  If the resulting corresponding defect doesn't match the other filter, fail out defect and revert job/defect
+
+  Fail out defect: set DTG_ERROR field with message and make no other changes
+
+SCM		DTS
+1		1		1 DataSource to 1 DataSource
+n		1		Segment n to 1 DataSource ??
+1		n		1 DataSource to Segment n ??
+n		m		Segment n to Segment m
+
+d - defect in DTS
+j - job in P4
+
+new d:
+	d fails filter, skip
+	create new job
+	unify, set ID, DSID
+	d fails filter: log and skip
+	j fails filter: log and skip
+	save d and j
+
+new j:
+	j fails filter: skip
+	create new defect
+	unify, set ID AND SID
+	j fails filter: revert changes to j, set ERROR, save j, log and skip
+	d fails filter: revert changes to j, set ERROR, save j, log and skip
+	save d and j
+
+old d:
+	d fails filter, skip
+	retrieve matching j (ID), if SID field exists and SID doesn't match, log and skip ***
+	unify, set SID if field exists and is blank
+	j fails filter: revert changes to j, set ERROR, save j, log, and skip
+	d fails filter: revert changes to j, set ERROR, save j, log, and skip
+	save d and j
+
+old j:
+	j fails filter, skip
+	j SID doesn't match, skip
+	retrieve matching D (id)
+	unify, set SID if field exists and is blank
+	j fails filter: revert changes to j, set ERROR, save j, log and skip
+	d fails filter: revert changes to j, set ERROR, save j, log and skip
+	save d and j
+

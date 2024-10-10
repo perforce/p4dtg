@@ -1,0 +1,11 @@
+% vi MyDTG.cc
+  - Change extract_date() and format_date() to conform to your DTS's format
+  - Change get_name() to return the simple name for your DTS.
+    This name is saved in the data source to identify which plugin is
+    to be used for that source.
+  - Change get_module_version() to return a line describing the plugin
+
+% vi MyDTG.h
+  - Decide and implement how you want to store the fields for specific
+    defects.
+% vi MyDTGProj.cc

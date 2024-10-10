@@ -1,0 +1,92 @@
+plugins {
+    id 'java'
+    id 'signing'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group 'com.perforce'
+def perforceVersion = '2022.1'
+
+repositories {
+    mavenCentral()
+    maven {
+        url('https://m2proxy.atlassian.com/repository/public')
+    }
+}
+
+dependencies {
+	implementation ('com.atlassian.jira:jira-rest-java-client-app:5.2.7') {
+		exclude group: 'log4j', module: 'log4j'
+	}
+	implementation 'org.springframework:spring-beans:5.3.20' // replaces 5.3.6
+	implementation 'ch.qos.reload4j:reload4j:1.2.22' // replaces log4j 1.2.17 further replaces 1.2.18 which had a medium vulnerability
+
+	implementation 'com.atlassian.httpclient:atlassian-httpclient-library:2.2.0'
+	implementation 'com.atlassian.jira:jira-rest-java-client-api:5.2.7'
+
+	implementation 'com.atlassian.jira:jira-rest-java-client-core:5.2.7'
+	implementation ('org.codehaus.jettison:jettison:1.5.4') // replaces 1.3.7
+
+	testImplementation 'junit:junit:4.13.2'
+}
+
+jar {
+    archiveVersion = perforceVersion
+    archiveFileName = 'jira-rest.jar'
+    zip64 true
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE // for signing
+	processResources.exclude('*')
+    manifest {
+        attributes(
+				'Main-Class' : 'com.perforce.p4dtg.plugin.jira.tcp.server.TcpSocketServer',
+                'Implementation-Title': 'P4DTG Jira REST plugin',
+                'Implementation-Version': perforceVersion,
+                'Implementation-Vendor': 'Perforce Software'
+        )
+    }
+    from {
+       configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+	exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+}
+
+tasks.register('signMyJar') {
+    dependsOn(jar)
+    def jarSignKeyStore = project.hasProperty('jarSignKeyStore') ? project.ext.jarSignKeyStore : ''
+    def jarSignKeyStoreAlias = project.hasProperty('jarSignKeyStoreAlias') ? project.ext.jarSignKeyStoreAlias : ''
+    def jarSignPassword = project.hasProperty('jarSignPassword') ? project.ext.jarSignPassword : ''
+    def jarSignTsa = project.hasProperty('jarSignTsa') ? project.ext.jarSignTsa : ''
+
+    doLast{
+        println "--- Jar to be signed: ${jar.archivePath}"
+        def exec_line = ["jarsigner", "-keystore ", jarSignKeyStore,
+                        "-storepass ", jarSignPassword,
+                        "-tsa ", jarSignTsa,
+                        jar.archivePath,
+                        jarSignKeyStoreAlias].execute()
+        exec_line.waitFor()
+        println "--- Exit value: ${exec_line.exitValue()}"
+        if (exec_line.exitValue()) {
+            throw new GradleException("--- Signing failed : ${exec_line.text}")
+        }
+        println "--- Output: ${exec_line.text}"
+    }
+}
+
+signing {
+    sign jar
+}
+
+tasks.register('verifySignature') {
+    dependsOn(jar)
+    dependsOn(signJar)
+    dependsOn(signMyJar)
+
+    doLast{
+        def exec_line = ["jarsigner", "-verify", jar.archivePath].execute()
+        exec_line.waitFor()
+        println "--- Output: ${exec_line.text}"
+    }
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<DTGConfiguration
+    version="1"
+    updated="2006/07/17 22:08:47 UTC">
+    <DataMapping
+        id="abc"
+        scm_id="1111"
+        dts_id="2222"
+        mirror_conflicts="ERROR">
+        <MirrorRules>
+            <CopyRule
+                scm_field="Status"
+                dts_field="Status"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="closed"
+                    value2="closed" />
+                <CopyMap
+                    value1="open"
+                    value2="open" />
+                <CopyMap
+                    value1="bad1"
+                    value2="closed" />
+                <CopyMap
+                    value1="open"
+                    value2="bad2" />
+                <CopyMap
+                    value1="bad1"
+                    value2="bad2" />
+            </CopyRule>
+        </MirrorRules>
+    </DataMapping>
+</DTGConfiguration>

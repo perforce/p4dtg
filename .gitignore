@@ -1,0 +1,5 @@
+.vscode/
+.p4config
+.p4ignore
+build/
+.gradle/

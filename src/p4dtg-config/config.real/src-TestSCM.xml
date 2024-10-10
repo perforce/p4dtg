@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<DTGConfiguration
+    version="1"
+    updated="2006/05/15 17:06:53 UTC">
+    <DataSource
+        type="SCM"
+        plugin="Perforce Jobs"
+        nickname="TestSCM"
+        server="dhcp-36.perforce.com:1111"
+        user="scm_admin"
+        password=""
+        module="Jobs"
+        moddate_field="ModDate"
+        moduser_field="ModBy"
+        admin_user="scm_admin" />
+</DTGConfiguration>

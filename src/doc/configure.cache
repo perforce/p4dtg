@@ -1,0 +1,13 @@
+-prefix 
+\Qt414\ 
+-release 
+-static 
+-fast 
+-no-exceptions 
+-accessibility 
+-no-stl 
+-qt-zlib 
+-qt-gif 
+-qt-libpng 
+-qt-libmng 
+-qt-libjpeg 

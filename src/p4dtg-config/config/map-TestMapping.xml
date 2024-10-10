@@ -1,0 +1,605 @@
+<?xml version="1.0" ?>
+<DTGConfiguration
+    version="1"
+    updated="2006/05/15 17:21:33 UTC">
+    <DataMapping
+        id="TestMapping"
+        scm_id="TestSCM"
+        dts_id="TestDTS"
+        mirror_conflicts="NEWER">
+        <SCMFilters>
+            <FilterRule
+                field="Product"
+                pattern="*" />
+        </SCMFilters>
+        <DTSFilters>
+            <FilterRule
+                field="Product"
+                pattern="*" />
+        </DTSFilters>
+        <FixRule
+            dts_field="text-afi"
+            copy_type="APPEND"
+            file_list="1"
+            change_number="1"
+            description="1"
+            fixed_by="1"
+            fixed_date="1" />
+        <FixRule
+            dts_field="text-af1i"
+            copy_type="APPEND"
+            file_list="1"
+            change_number="0"
+            description="0"
+            fixed_by="0"
+            fixed_date="0" />
+        <FixRule
+            dts_field="text-af2i"
+            copy_type="APPEND"
+            file_list="0"
+            change_number="1"
+            description="0"
+            fixed_by="0"
+            fixed_date="0" />
+        <FixRule
+            dts_field="text-af3i"
+            copy_type="APPEND"
+            file_list="0"
+            change_number="0"
+            description="1"
+            fixed_by="0"
+            fixed_date="0" />
+        <FixRule
+            dts_field="text-af4i"
+            copy_type="APPEND"
+            file_list="0"
+            change_number="0"
+            description="0"
+            fixed_by="1"
+            fixed_date="0" />
+        <FixRule
+            dts_field="text-af5i"
+            copy_type="APPEND"
+            file_list="0"
+            change_number="0"
+            description="0"
+            fixed_by="0"
+            fixed_date="1" />
+        <MirrorRules>
+            <CopyRule
+                scm_field="word-2"
+                dts_field="word-2"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-2"
+                dts_field="line-2"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-2"
+                dts_field="text-2"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="date-2"
+                dts_field="date-2"
+                copy_type="DATE"
+                truncate="0" />
+            <CopyRule
+                scm_field="select-n-2"
+                dts_field="select-n-2"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="d51"
+                    value2="s51" />
+                <CopyMap
+                    value1="d52"
+                    value2="s52" />
+                <CopyMap
+                    value1="d53"
+                    value2="s53" />
+                <CopyMap
+                    value1="d54"
+                    value2="s54" />
+                <CopyMap
+                    value1="d55"
+                    value2="s55" />
+            </CopyRule>
+            <CopyRule
+                scm_field="select-m-2"
+                dts_field="select-m-2"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="d11"
+                    value2="s11" />
+                <CopyMap
+                    value1="d12"
+                    value2="s12" />
+                <CopyMap
+                    value1="d13"
+                    value2="s13" />
+            </CopyRule>
+        </MirrorRules>
+        <ScmToDtsRules>
+            <CopyRule
+                scm_field="word-2"
+                dts_field="word-i2w"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-2"
+                dts_field="line-i2w"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-2"
+                dts_field="text-i2w"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-o"
+                dts_field="word-iw"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-o"
+                dts_field="line-iw"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-o"
+                dts_field="text-iw"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-2"
+                dts_field="word-i2l"
+                copy_type="WORD"
+                truncate="1" />
+            <CopyRule
+                scm_field="line-2"
+                dts_field="line-i2l"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-2"
+                dts_field="text-i2l"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-o"
+                dts_field="word-il"
+                copy_type="WORD"
+                truncate="1" />
+            <CopyRule
+                scm_field="line-o"
+                dts_field="line-il"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-o"
+                dts_field="text-il"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-2"
+                dts_field="text-i2t"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-2"
+                dts_field="word-i2t"
+                copy_type="WORD"
+                truncate="1" />
+            <CopyRule
+                scm_field="text-2"
+                dts_field="line-i2t"
+                copy_type="LINE"
+                truncate="1" />
+            <CopyRule
+                scm_field="text-o"
+                dts_field="text-it"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-o"
+                dts_field="word-it"
+                copy_type="WORD"
+                truncate="1" />
+            <CopyRule
+                scm_field="text-o"
+                dts_field="line-it"
+                copy_type="LINE"
+                truncate="1" />
+            <CopyRule
+                scm_field="date-2"
+                dts_field="date-i2d"
+                copy_type="DATE"
+                truncate="0" />
+            <CopyRule
+                scm_field="date-2"
+                dts_field="line-i2d"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="date-2"
+                dts_field="text-i2d"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="date-o"
+                dts_field="date-id"
+                copy_type="DATE"
+                truncate="0" />
+            <CopyRule
+                scm_field="date-o"
+                dts_field="line-id"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="date-o"
+                dts_field="text-id"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="select-n-2"
+                dts_field="word-i2s"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="select-n-2"
+                dts_field="line-i2s"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="select-n-2"
+                dts_field="text-i2s"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="select-n-o"
+                dts_field="word-is"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="select-n-o"
+                dts_field="line-is"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="select-n-o"
+                dts_field="text-is"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="List of Change Numbers"
+                dts_field="word-itf"
+                copy_type="WORD"
+                truncate="1" />
+            <CopyRule
+                scm_field="List of Change Numbers"
+                dts_field="line-itf"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="List of Change Numbers"
+                dts_field="text-itf"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="select-n-2"
+                dts_field="select-m-i2s"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="s51"
+                    value2="d23" />
+                <CopyMap
+                    value1="s52"
+                    value2="d22" />
+                <CopyMap
+                    value1="s53"
+                    value2="d21" />
+                <CopyMap
+                    value1="s54"
+                    value2="d22" />
+                <CopyMap
+                    value1="s55"
+                    value2="d23" />
+            </CopyRule>
+            <CopyRule
+                scm_field="select-n-o"
+                dts_field="select-m-is"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="s81"
+                    value2="d33" />
+                <CopyMap
+                    value1="s82"
+                    value2="d32" />
+                <CopyMap
+                    value1="s83"
+                    value2="d31" />
+                <CopyMap
+                    value1="s84"
+                    value2="d32" />
+                <CopyMap
+                    value1="s85"
+                    value2="d33" />
+            </CopyRule>
+            <CopyRule
+                scm_field="select-m-2"
+                dts_field="select-n-i2s"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="s11"
+                    value2="d65" />
+                <CopyMap
+                    value1="s12"
+                    value2="d63" />
+                <CopyMap
+                    value1="s13"
+                    value2="d61" />
+            </CopyRule>
+            <CopyRule
+                scm_field="select-m-o"
+                dts_field="select-n-is"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="s41"
+                    value2="d75" />
+                <CopyMap
+                    value1="s42"
+                    value2="d73" />
+                <CopyMap
+                    value1="s43"
+                    value2="d71" />
+            </CopyRule>
+        </ScmToDtsRules>
+        <DtsToScmRules>
+            <CopyRule
+                scm_field="word-i2w"
+                dts_field="word-2"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-i2w"
+                dts_field="word-2"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-i2w"
+                dts_field="word-2"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-iw"
+                dts_field="word-o"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-iw"
+                dts_field="word-o"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-iw"
+                dts_field="word-o"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-i2l"
+                dts_field="line-2"
+                copy_type="WORD"
+                truncate="1" />
+            <CopyRule
+                scm_field="line-i2l"
+                dts_field="line-2"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-i2l"
+                dts_field="line-2"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-il"
+                dts_field="line-o"
+                copy_type="WORD"
+                truncate="1" />
+            <CopyRule
+                scm_field="line-il"
+                dts_field="line-o"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-il"
+                dts_field="line-o"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-i2t"
+                dts_field="text-2"
+                copy_type="WORD"
+                truncate="1" />
+            <CopyRule
+                scm_field="line-i2t"
+                dts_field="text-2"
+                copy_type="LINE"
+                truncate="1" />
+            <CopyRule
+                scm_field="text-i2t"
+                dts_field="text-2"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-it"
+                dts_field="text-o"
+                copy_type="WORD"
+                truncate="1" />
+            <CopyRule
+                scm_field="line-it"
+                dts_field="text-o"
+                copy_type="LINE"
+                truncate="1" />
+            <CopyRule
+                scm_field="text-it"
+                dts_field="text-o"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="date-i2d"
+                dts_field="date-2"
+                copy_type="DATE"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-i2d"
+                dts_field="date-2"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-i2d"
+                dts_field="date-2"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="date-id"
+                dts_field="date-o"
+                copy_type="DATE"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-id"
+                dts_field="date-o"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-id"
+                dts_field="date-o"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-i2s"
+                dts_field="select-n-2"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-i2s"
+                dts_field="select-n-2"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-i2s"
+                dts_field="select-n-2"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-is"
+                dts_field="select-n-o"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-is"
+                dts_field="select-n-o"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-is"
+                dts_field="select-n-o"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-ifa"
+                dts_field="text-afi"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-ifa"
+                dts_field="text-afi"
+                copy_type="WORD"
+                truncate="1" />
+            <CopyRule
+                scm_field="line-ifa"
+                dts_field="text-afi"
+                copy_type="LINE"
+                truncate="1" />
+            <CopyRule
+                scm_field="select-m-i2s"
+                dts_field="select-n-2"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="d51"
+                    value2="s23" />
+                <CopyMap
+                    value1="d52"
+                    value2="s22" />
+                <CopyMap
+                    value1="d53"
+                    value2="s21" />
+                <CopyMap
+                    value1="d54"
+                    value2="s22" />
+                <CopyMap
+                    value1="d55"
+                    value2="s23" />
+            </CopyRule>
+            <CopyRule
+                scm_field="select-m-is"
+                dts_field="select-n-o"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="d81"
+                    value2="s33" />
+                <CopyMap
+                    value1="d82"
+                    value2="s32" />
+                <CopyMap
+                    value1="d83"
+                    value2="s31" />
+                <CopyMap
+                    value1="d84"
+                    value2="s32" />
+                <CopyMap
+                    value1="d85"
+                    value2="s33" />
+            </CopyRule>
+            <CopyRule
+                scm_field="select-n-i2s"
+                dts_field="select-m-2"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="d11"
+                    value2="s65" />
+                <CopyMap
+                    value1="d12"
+                    value2="s63" />
+                <CopyMap
+                    value1="d13"
+                    value2="s61" />
+            </CopyRule>
+            <CopyRule
+                scm_field="select-n-is"
+                dts_field="select-m-o"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="d41"
+                    value2="s75" />
+                <CopyMap
+                    value1="d42"
+                    value2="s73" />
+                <CopyMap
+                    value1="d43"
+                    value2="s71" />
+            </CopyRule>
+        </DtsToScmRules>
+    </DataMapping>
+</DTGConfiguration>

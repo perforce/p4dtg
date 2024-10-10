@@ -1,0 +1,108 @@
+<?xml version="1.0" ?>
+<DTGConfiguration
+    version="1"
+    updated="1147801718">
+    <DataMapping
+        id="1122"
+        scm_id="1111"
+        dts_id="2222"
+        mirror_conflicts="ERROR">
+        <MirrorRules>
+            <CopyRule
+                scm_field="Owner"
+                dts_field="Owner"
+                copy_type="ALL" />
+            <CopyRule
+                scm_field="select-m-2"
+                dts_field="select-m-2"
+                copy_type="MAP">
+                <CopyMap
+                    value1="d13"
+                    value2="s13" />
+                <CopyMap
+                    value1="d12"
+                    value2="s12" />
+                <CopyMap
+                    value1="d11"
+                    value2="s11" />
+            </CopyRule>
+            <CopyRule
+                scm_field="word-2"
+                dts_field="word-2"
+                copy_type="ALL" />
+            <CopyRule
+                scm_field="line-2"
+                dts_field="line-2"
+                copy_type="ALL" />
+            <CopyRule
+                scm_field="date-2"
+                dts_field="date-2"
+                copy_type="DATE" />
+            <CopyRule
+                scm_field="Description"
+                dts_field="Description"
+                copy_type="ALL" />
+        </MirrorRules>
+        <ScmToDtsRules>
+            <CopyRule
+                scm_field="List of Change Numbers"
+                dts_field="text-itf"
+                copy_type="ALL" />
+            <CopyRule
+                scm_field="text-o"
+                dts_field="text-it"
+                copy_type="ALL" />
+            <CopyRule
+                scm_field="word-o"
+                dts_field="word-iw"
+                copy_type="ALL" />
+            <CopyRule
+                scm_field="select-m-o"
+                dts_field="select-n-is"
+                copy_type="MAP">
+                <CopyMap
+                    value1="s43"
+                    value2="d75" />
+                <CopyMap
+                    value1="s42"
+                    value2="d73" />
+                <CopyMap
+                    value1="s41"
+                    value2="d71" />
+            </CopyRule>
+            <CopyRule
+                scm_field="line-o"
+                dts_field="line-il"
+                copy_type="ALL" />
+            <CopyRule
+                scm_field="Created"
+                dts_field="date-id"
+                copy_type="DATE" />
+        </ScmToDtsRules>
+        <DtsToScmRules>
+            <CopyRule
+                scm_field="text-it"
+                dts_field="text-o"
+                copy_type="ALL" />
+            <CopyRule
+                scm_field="line-il"
+                dts_field="line-o"
+                copy_type="ALL" />
+            <CopyRule
+                scm_field="date-i2d"
+                dts_field="Created"
+                copy_type="DATE" />
+            <CopyRule
+                scm_field="Status"
+                dts_field="Status"
+                copy_type="MAP">
+                <CopyMap
+                    value1="closed"
+                    value2="closed" />
+                <CopyMap
+                    value1="open"
+                    value2="open" />
+            </CopyRule>
+        </DtsToScmRules>
+    </DataMapping>
+</DTGConfiguration>

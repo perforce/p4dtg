@@ -1,0 +1,1507 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>MainDialog</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>MainDialog</cstring>
+    </property>
+    <property name="enabled">
+        <bool>true</bool>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>694</width>
+            <height>639</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Perforce Defect Tracking Gateway Configuration Editor</string>
+    </property>
+    <property name="sizeGripEnabled">
+        <bool>true</bool>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>11</number>
+        </property>
+        <property name="spacing">
+            <number>6</number>
+        </property>
+        <widget class="QTabWidget">
+            <property name="name">
+                <cstring>mainTabWidget</cstring>
+            </property>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>Widget8</cstring>
+                </property>
+                <attribute name="title">
+                    <string>P4 Depot Sources</string>
+                </attribute>
+                <widget class="Line">
+                    <property name="name">
+                        <cstring>p4Line1</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>160</y>
+                            <width>630</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property name="frameShape">
+                        <enum>HLine</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Sunken</enum>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>p4DeleteButton</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>550</x>
+                            <y>120</y>
+                            <width>88</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Delete</string>
+                    </property>
+                </widget>
+                <widget class="QListBox">
+                    <item>
+                        <property name="text">
+                            <string>Alpha Widget : computer:1234</string>
+                        </property>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>Beta Toolbox : computer:2345</string>
+                        </property>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>Gama Game : computer:1999</string>
+                        </property>
+                    </item>
+                    <property name="name">
+                        <cstring>listBox1</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>40</y>
+                            <width>520</width>
+                            <height>110</height>
+                        </rect>
+                    </property>
+                    <property name="currentItem">
+                        <number>1</number>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>p4NewButton</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>550</x>
+                            <y>80</y>
+                            <width>88</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>New</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>p4EditButton</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>550</x>
+                            <y>40</y>
+                            <width>88</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Edit</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>p4NicknameLabel</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>190</y>
+                            <width>63</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Nickname:</string>
+                    </property>
+                </widget>
+                <widget class="QGroupBox">
+                    <property name="name">
+                        <cstring>p4FieldGroup</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>40</x>
+                            <y>400</y>
+                            <width>420</width>
+                            <height>100</height>
+                        </rect>
+                    </property>
+                    <property name="title">
+                        <string>Job Field and User Details</string>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>p4FieldModDateLabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>30</y>
+                                <width>150</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Modified Date Fieldname:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>p4FieldModByLabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>60</y>
+                                <width>150</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Modified By Fieldname:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>p4FieldModDateEdit</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>170</x>
+                                <y>30</y>
+                                <width>230</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property name="paletteBackgroundColor">
+                            <color>
+                                <red>230</red>
+                                <green>230</green>
+                                <blue>230</blue>
+                            </color>
+                        </property>
+                        <property name="text">
+                            <string>ModifiedDate</string>
+                        </property>
+                        <property name="readOnly">
+                            <bool>true</bool>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>p4FieldModByEdit</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>170</x>
+                                <y>60</y>
+                                <width>230</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property name="paletteBackgroundColor">
+                            <color>
+                                <red>230</red>
+                                <green>230</green>
+                                <blue>230</blue>
+                            </color>
+                        </property>
+                        <property name="text">
+                            <string>ModifiedBy</string>
+                        </property>
+                        <property name="readOnly">
+                            <bool>true</bool>
+                        </property>
+                    </widget>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>p4NicknameEdit</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>90</x>
+                            <y>190</y>
+                            <width>210</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property name="paletteBackgroundColor">
+                        <color>
+                            <red>230</red>
+                            <green>230</green>
+                            <blue>230</blue>
+                        </color>
+                    </property>
+                    <property name="text">
+                        <string>Beta Toolbox</string>
+                    </property>
+                    <property name="readOnly">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>p4ListLabel</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>20</y>
+                            <width>160</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Defined P4 Depot Sources</string>
+                    </property>
+                </widget>
+                <widget class="QGroupBox">
+                    <property name="name">
+                        <cstring>p4ServerGroup</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>40</x>
+                            <y>220</y>
+                            <width>420</width>
+                            <height>120</height>
+                        </rect>
+                    </property>
+                    <property name="title">
+                        <string>Server Connection Details</string>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>p4ServerServerLabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>20</x>
+                                <y>20</y>
+                                <width>50</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Server:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>p4ServerUserLabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>20</x>
+                                <y>50</y>
+                                <width>70</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>User Name:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>p4ServerPasswordLabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>20</x>
+                                <y>80</y>
+                                <width>70</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Password:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>p4ServerServerEdit</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>100</x>
+                                <y>20</y>
+                                <width>300</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property name="paletteBackgroundColor">
+                            <color>
+                                <red>230</red>
+                                <green>230</green>
+                                <blue>230</blue>
+                            </color>
+                        </property>
+                        <property name="text">
+                            <string>computer:2345</string>
+                        </property>
+                        <property name="readOnly">
+                            <bool>true</bool>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>p4ServerUserEdit</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>100</x>
+                                <y>50</y>
+                                <width>300</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property name="paletteBackgroundColor">
+                            <color>
+                                <red>230</red>
+                                <green>230</green>
+                                <blue>230</blue>
+                            </color>
+                        </property>
+                        <property name="text">
+                            <string>admin</string>
+                        </property>
+                        <property name="readOnly">
+                            <bool>true</bool>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>p4ServerPasswordEdit</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>100</x>
+                                <y>80</y>
+                                <width>300</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property name="paletteBackgroundColor">
+                            <color>
+                                <red>230</red>
+                                <green>230</green>
+                                <blue>230</blue>
+                            </color>
+                        </property>
+                        <property name="readOnly">
+                            <bool>true</bool>
+                        </property>
+                    </widget>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>p4ConfigLabel</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>40</x>
+                            <y>360</y>
+                            <width>420</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>This server IS currently configured for use with P4DTG</string>
+                    </property>
+                </widget>
+            </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>Widget9</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Defect Tracking Sources</string>
+                </attribute>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>dtsNicknameLabel</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>190</y>
+                            <width>63</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Nickname:</string>
+                    </property>
+                </widget>
+                <widget class="QGroupBox">
+                    <property name="name">
+                        <cstring>dtsServerGroup</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>40</x>
+                            <y>220</y>
+                            <width>420</width>
+                            <height>120</height>
+                        </rect>
+                    </property>
+                    <property name="title">
+                        <string>Server Connection Details</string>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>dtsServerServerLabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>20</x>
+                                <y>20</y>
+                                <width>50</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Server:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>dtsServerUserLabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>20</x>
+                                <y>50</y>
+                                <width>70</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>User Name:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>dtsServerPasswordLabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>20</x>
+                                <y>80</y>
+                                <width>70</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Password:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>dtsServerServerEdit</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>100</x>
+                                <y>20</y>
+                                <width>300</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property name="paletteBackgroundColor">
+                            <color>
+                                <red>230</red>
+                                <green>230</green>
+                                <blue>230</blue>
+                            </color>
+                        </property>
+                        <property name="text">
+                            <string>server:2345</string>
+                        </property>
+                        <property name="readOnly">
+                            <bool>true</bool>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>dtsServerUserEdit</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>100</x>
+                                <y>50</y>
+                                <width>300</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property name="paletteBackgroundColor">
+                            <color>
+                                <red>230</red>
+                                <green>230</green>
+                                <blue>230</blue>
+                            </color>
+                        </property>
+                        <property name="text">
+                            <string>admin</string>
+                        </property>
+                        <property name="readOnly">
+                            <bool>true</bool>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>dtsServerPasswordEdit</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>100</x>
+                                <y>80</y>
+                                <width>300</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property name="paletteBackgroundColor">
+                            <color>
+                                <red>230</red>
+                                <green>230</green>
+                                <blue>230</blue>
+                            </color>
+                        </property>
+                        <property name="readOnly">
+                            <bool>true</bool>
+                        </property>
+                    </widget>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>dtsNicknameEdit</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>90</x>
+                            <y>190</y>
+                            <width>210</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property name="paletteBackgroundColor">
+                        <color>
+                            <red>230</red>
+                            <green>230</green>
+                            <blue>230</blue>
+                        </color>
+                    </property>
+                    <property name="text">
+                        <string>Beta Issues</string>
+                    </property>
+                    <property name="readOnly">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>dtsTypeEdit</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>320</x>
+                            <y>190</y>
+                            <width>200</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property name="paletteBackgroundColor">
+                        <color>
+                            <red>230</red>
+                            <green>230</green>
+                            <blue>230</blue>
+                        </color>
+                    </property>
+                    <property name="text">
+                        <string>Mercury Test Director</string>
+                    </property>
+                    <property name="readOnly">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QGroupBox">
+                    <property name="name">
+                        <cstring>dtsFieldGroup</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>40</x>
+                            <y>400</y>
+                            <width>420</width>
+                            <height>130</height>
+                        </rect>
+                    </property>
+                    <property name="title">
+                        <string>Job Field and User Details</string>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>dtsFieldModByLabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>90</y>
+                                <width>150</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Modified By Fieldname:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>dtsFieldModDateLabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>60</y>
+                                <width>150</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Modified Date Fieldname:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>dtsFieldIDLabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>30</y>
+                                <width>150</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Defect ID Fieldname:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>dtsFieldIDEdit</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>160</x>
+                                <y>30</y>
+                                <width>240</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property name="paletteBackgroundColor">
+                            <color>
+                                <red>230</red>
+                                <green>230</green>
+                                <blue>230</blue>
+                            </color>
+                        </property>
+                        <property name="text">
+                            <string>DefectID</string>
+                        </property>
+                        <property name="readOnly">
+                            <bool>true</bool>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>dtsFieldModDateEdit</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>160</x>
+                                <y>60</y>
+                                <width>240</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property name="paletteBackgroundColor">
+                            <color>
+                                <red>230</red>
+                                <green>230</green>
+                                <blue>230</blue>
+                            </color>
+                        </property>
+                        <property name="text">
+                            <string>LastModifiedOn</string>
+                        </property>
+                        <property name="readOnly">
+                            <bool>true</bool>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>dtsFieldModByEdit</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>160</x>
+                                <y>90</y>
+                                <width>240</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property name="paletteBackgroundColor">
+                            <color>
+                                <red>230</red>
+                                <green>230</green>
+                                <blue>230</blue>
+                            </color>
+                        </property>
+                        <property name="text">
+                            <string>LastModifiedBy</string>
+                        </property>
+                        <property name="readOnly">
+                            <bool>true</bool>
+                        </property>
+                    </widget>
+                </widget>
+                <widget class="QComboBox">
+                    <item>
+                        <property name="text">
+                            <string>*UNKNOWN*</string>
+                        </property>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>WorkflowAlpha (unconfigured)</string>
+                        </property>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>WorkflowBeta</string>
+                        </property>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>WorkflowGama (unconfigured)</string>
+                        </property>
+                    </item>
+                    <property name="name">
+                        <cstring>dtsProjectCombo</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>130</x>
+                            <y>360</y>
+                            <width>280</width>
+                            <height>27</height>
+                        </rect>
+                    </property>
+                    <property name="paletteBackgroundColor">
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                    </property>
+                    <property name="currentItem">
+                        <number>2</number>
+                    </property>
+                </widget>
+                <widget class="Line">
+                    <property name="name">
+                        <cstring>dtLine1</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>160</y>
+                            <width>630</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property name="frameShape">
+                        <enum>HLine</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Sunken</enum>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>dtsListLabel</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>18</x>
+                            <y>23</y>
+                            <width>193</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Defined Defect Tracking Sources</string>
+                    </property>
+                </widget>
+                <widget class="QListBox">
+                    <item>
+                        <property name="text">
+                            <string>Alpha Bugs : server:1234 (Mercury Test Director)</string>
+                        </property>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>Beta Issues : server:2345 (P4 Jobs Defect Tracking)</string>
+                        </property>
+                    </item>
+                    <property name="name">
+                        <cstring>dtsList</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>40</y>
+                            <width>520</width>
+                            <height>110</height>
+                        </rect>
+                    </property>
+                    <property name="currentItem">
+                        <number>1</number>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>dtsEditButton</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>550</x>
+                            <y>40</y>
+                            <width>88</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Edit</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>dtsNewButton</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>550</x>
+                            <y>80</y>
+                            <width>88</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>New</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>dtsDeleteButton</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>550</x>
+                            <y>120</y>
+                            <width>88</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Delete</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>dtsProjectLabel</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>40</x>
+                            <y>360</y>
+                            <width>70</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>For Project:</string>
+                    </property>
+                </widget>
+            </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>TabPage</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Gateway Mappings</string>
+                </attribute>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>gatewayListLabel</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>18</x>
+                            <y>23</y>
+                            <width>193</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Defined Gateway Mappings</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>gatewayEditButton</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>550</x>
+                            <y>40</y>
+                            <width>88</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Edit</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>gatewayNewButton</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>550</x>
+                            <y>80</y>
+                            <width>88</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>New</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>gatewayDeleteButton</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>550</x>
+                            <y>120</y>
+                            <width>88</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Delete</string>
+                    </property>
+                </widget>
+                <widget class="Line">
+                    <property name="name">
+                        <cstring>gatewayLine1</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>160</y>
+                            <width>630</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property name="frameShape">
+                        <enum>HLine</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Sunken</enum>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                </widget>
+                <widget class="QListBox">
+                    <item>
+                        <property name="text">
+                            <string>AlphaTool: Alpha Widget &lt;-&gt; Alpha Bugs (WorkflowAlpha)</string>
+                        </property>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>BetaGame: Beta Toolbox &lt;-&gt; Beta Isues (WorkflowBeta)</string>
+                        </property>
+                    </item>
+                    <property name="name">
+                        <cstring>gatewayList</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>40</y>
+                            <width>520</width>
+                            <height>110</height>
+                        </rect>
+                    </property>
+                    <property name="currentItem">
+                        <number>-1</number>
+                    </property>
+                </widget>
+                <widget class="QGroupBox">
+                    <property name="name">
+                        <cstring>groupBox5</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>18</x>
+                            <y>181</y>
+                            <width>631</width>
+                            <height>351</height>
+                        </rect>
+                    </property>
+                    <property name="title">
+                        <string>Runtime unification control</string>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>20</y>
+                                <width>40</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Name:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel2</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>50</y>
+                                <width>142</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Defect Tracking Source:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel2_2</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>80</y>
+                                <width>142</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Perforce Server Source:</string>
+                        </property>
+                    </widget>
+                    <widget class="QGroupBox">
+                        <property name="name">
+                            <cstring>groupBox6</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>120</y>
+                                <width>571</width>
+                                <height>160</height>
+                            </rect>
+                        </property>
+                        <property name="title">
+                            <string>Using Last Modified Date</string>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabel4_2</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>20</x>
+                                    <y>110</y>
+                                    <width>126</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Last unification was:</string>
+                            </property>
+                        </widget>
+                        <widget class="QDateTimeEdit">
+                            <property name="name">
+                                <cstring>dateTimeEdit1_2</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>false</bool>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>170</x>
+                                    <y>110</y>
+                                    <width>160</width>
+                                    <height>21</height>
+                                </rect>
+                            </property>
+                            <property name="dateTime">
+                                <datetime>
+                                    <year>2006</year>
+                                    <month>6</month>
+                                    <day>19</day>
+                                    <hour>0</hour>
+                                    <minute>0</minute>
+                                    <second>0</second>
+                                </datetime>
+                            </property>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabel4</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>20</x>
+                                    <y>70</y>
+                                    <width>126</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Start unification from:</string>
+                            </property>
+                        </widget>
+                        <widget class="QDateTimeEdit">
+                            <property name="name">
+                                <cstring>dateTimeEdit1</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>170</x>
+                                    <y>70</y>
+                                    <width>160</width>
+                                    <height>21</height>
+                                </rect>
+                            </property>
+                            <property name="dateTime">
+                                <datetime>
+                                    <year>2006</year>
+                                    <month>1</month>
+                                    <day>1</day>
+                                    <hour>0</hour>
+                                    <minute>0</minute>
+                                    <second>0</second>
+                                </datetime>
+                            </property>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabel3</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>20</x>
+                                    <y>31</y>
+                                    <width>146</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Unification server status:</string>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>lineEdit18</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>false</bool>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>170</x>
+                                    <y>30</y>
+                                    <width>160</width>
+                                    <height>21</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Server is stopped</string>
+                            </property>
+                        </widget>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>pushButton13_2</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>350</x>
+                                    <y>30</y>
+                                    <width>160</width>
+                                    <height>29</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Start unification server</string>
+                            </property>
+                        </widget>
+                        <widget class="QCheckBox">
+                            <property name="name">
+                                <cstring>checkBox1</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>true</bool>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>350</x>
+                                    <y>70</y>
+                                    <width>200</width>
+                                    <height>21</height>
+                                </rect>
+                            </property>
+                            <property name="text">
+                                <string>Resynchronize from start date</string>
+                            </property>
+                        </widget>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>lineEdit15</cstring>
+                        </property>
+                        <property name="enabled">
+                            <bool>false</bool>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>190</x>
+                                <y>20</y>
+                                <width>290</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>AlphaTool</string>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>lineEdit15_2</cstring>
+                        </property>
+                        <property name="enabled">
+                            <bool>false</bool>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>190</x>
+                                <y>50</y>
+                                <width>290</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>AlphaBugs (WorkflowAlpha)</string>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>lineEdit15_3</cstring>
+                        </property>
+                        <property name="enabled">
+                            <bool>false</bool>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>190</x>
+                                <y>80</y>
+                                <width>290</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>AlphaWidget</string>
+                        </property>
+                    </widget>
+                </widget>
+            </widget>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>Layout1</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>mainHelpButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Help</string>
+                    </property>
+                    <property name="accel">
+                        <string>F1</string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>mainSpacer1</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>mainOkButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="accel">
+                        <string></string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>true</bool>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>mainCancelButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property name="accel">
+                        <string></string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>mainOkButton</sender>
+        <signal>clicked()</signal>
+        <receiver>MainDialog</receiver>
+        <slot>accept()</slot>
+    </connection>
+    <connection>
+        <sender>mainCancelButton</sender>
+        <signal>clicked()</signal>
+        <receiver>MainDialog</receiver>
+        <slot>reject()</slot>
+    </connection>
+</connections>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

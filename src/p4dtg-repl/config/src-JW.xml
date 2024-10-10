@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<DTGConfiguration
+    version="1"
+    updated="2006/06/05 17:47:58 UTC">
+    <DataSource
+        type="DTS"
+        plugin="TestDirector Defects"
+        nickname="JW"
+        server="win-jwalker:8081"
+        user="sa"
+        password="manager"
+        module="DEFAULT:QualityCenter_Demo"
+        moddate_field="Modified"
+        moduser_field="Version Stamp"
+        admin_user="sa" />
+</DTGConfiguration>

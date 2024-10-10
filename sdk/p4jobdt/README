@@ -1,0 +1,31 @@
+P4 JOBS INTEGRATION BASED ON C++
+=================================
+This is the source for a plugin which provides the required functional
+interfaces to the Perforce Jobs System. This plugin is provide as
+part of the P4DTG SDK as a complete example and should not be built
+or distributed.
+
+NOTE: It is not expected that your environment will support building
+      of this plugin as it has requirements specific to the Perforce
+      build and release environment.
+
+DTG-mod-cpp.cc		C++ implementation of the required interface
+			This file should pretty much be used as is
+CMakeLists.txt		Cmake build definition file
+MyDTG.cc		C++ implementation of the class encapsulating 
+			the base P4 Jobs Defect Tracking System
+MyDTGDefect.cc		C++ implementation of the class encapsulating
+			specific 'Defects' aka Jobs
+MyDTG.h			C++ Class definition file for the MyDTG, MyDTGProj, 
+			MyDTGDefect classes. Add additional attributes and
+			methods as needed by the plugin have been added
+MyDTGProj.cc		C++ Class definition file for the MyDTGProj class
+			encapsulating specific 'Projects' within a p4d
+			installationa and it is called 'Jobs'.
+MyDTS.h			C++ class encapsulating the p4api necessary for the
+MyDTS.cc		C++ implementation of the MyDTS class
+P4MetaClient.h		C++ class derived from the P4 api
+P4MetaClient.cc		C++ implementaiton of the P4MetaClient class
+			plugin. 
+README			This file
+StrArr.h		Utility class for holding an array of strings

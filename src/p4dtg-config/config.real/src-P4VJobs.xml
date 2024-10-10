@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<DTGConfiguration
+    version="1"
+    updated="060501193208">
+    <DataSource
+        type="DTS"
+        plugin="Generic Jobs"
+        nickname="P4VJobs"
+        server="play:1777"
+        user="dts_admin"
+        password=""
+        module="Jobs"
+        moddate_field="ReviewedOn"
+        moduser_field="ReviewedBy"
+        admin_user="dts_admin" />
+</DTGConfiguration>

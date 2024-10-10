@@ -1,0 +1,63 @@
+#
+# A Perforce Job Spec Specification.
+#
+#  Updating this form can be dangerous!
+#  See 'p4 help jobspec' for proper directions.
+#
+# EXAMPLE P4DTG MAPPING:
+#
+# Mirror: none.
+#
+# Copy from JIRA to Perforce
+#          JIRA->Assignee    to Perforce->AssignedTo
+#              ->Summary     to         ->Description
+#              ->Description to         ->LongDescription
+#              ->Status      to         ->JiraStatus 
+#              ->Type        to         ->Type
+# Copy from Perforce to JIRA
+#         Perforce->Fix Details to JIRA->Fix
+#
+
+
+Fields:
+    101 Job word 32 required
+    102 Status select 10 required
+    103 ReportedBy word 32 once
+    104 ReportedOn date 20 once
+    105 Description text 0 optional
+    106 DTG_FIXES text 0 optional
+    107 DTG_DTISSUE word 32 optional
+    108 DTG_ERROR text 0 optional
+    109 DTG_MAPID word 32 optional
+    110 ModifiedBy word 32 always
+    111 ModifiedOn date 30 always
+    112 Type word 12 required
+    113 AssignedTo word 0 optional
+    115 LongDescription text 0 required
+    116 JiraStatus line 0 optional
+
+Values:
+    Status open/in-progress/closed
+
+Presets:
+    Status open,fix/same
+    ReportedBy $user
+    ReportedOn $now
+    ModifiedBy $user
+    ModifiedOn $now
+    
+Comments:
+    # A Perforce Job Specification.
+    #
+    #  Job:         The job name. 'new' generates a sequenced job number.
+    #  Status:      Simplified version of JIRA status:  open/in-progress/closed
+    #  Type:        Type, copied from JIRA
+    #  ReportedBy:  The user who created the job.
+    #  ReportedOn:  The date this specification was created.
+    #  ModifiedBy:  The user who last modified the job.
+    #  ModifiedOn:  The date this specification was last modified.
+    #  AssignedTo:  The user currently assigned to this job as copied from Jira
+    #  Description: Summary of the job, copied from Jira
+    #  LongDescription: Description of the job.
+    #  AssignTo:    Jira's Assignee
+    #  Do not alter:  DTG_FIXES, DTG_DTISSUE, DTG_ERROR, DTG_MAPID

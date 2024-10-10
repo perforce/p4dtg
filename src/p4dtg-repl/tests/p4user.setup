@@ -1,0 +1,68 @@
+#
+# Copyright 2005 Perforce Software.  All rights reserved.
+#
+
+SCRIPTPATH=$PWD
+MYHOST=`hostname`
+
+p4 user -i -f <<FOOBAR
+User:   $1
+
+Email:  $1@$1
+
+FullName:       user $1
+
+FOOBAR
+export P4USER=$1
+export P4CLIENT=${1}client
+export P4PORT=:3344
+p4 client -i <<FOOBAR
+# A Perforce Client Specification.
+#
+#  Client:      The client name.
+#  Update:      The date this specification was last modified.
+#  Access:      The date this client was last used in any way.
+#  Owner:       The user who created this client.
+#  Host:        If set, restricts access to the named host.
+#  Description: A short description of the client (optional).
+#  Root:        The base directory of the client workspace.
+#  AltRoots:    Up to two alternate client workspace roots.
+#  Options:     Client options:
+#                      [no]allwrite [no]clobber [no]compress
+#                      [un]locked [no]modtime [no]rmdir
+#  LineEnd:     Text file line endings on client: local/unix/mac/win/share.
+#  View:        Lines to map depot files into the client workspace.
+#
+# Use 'p4 help client' to see more about client views and options.
+
+Client:	${1}client
+
+Update:	2005/05/03 12:38:33
+
+Access:	2005/05/12 11:53:59
+
+Owner:	${1}
+
+#Host:	$MYHOST
+
+Description:
+	Created by ${1}.
+
+Root:	${SCRIPTPATH}/${1}/
+
+Options:	noallwrite noclobber nocompress unlocked nomodtime normdir
+
+LineEnd:	local
+
+View:
+	//depot/main/... //${1}client/main/...
+	//spec/... //${1}client/spec/...
+FOOBAR
+if [ -d ${SCRIPTPATH}/${1}/main ]; then
+	echo > /dev/null
+else
+	mkdir -p ${SCRIPTPATH}/${1}/main
+	mkdir -p ${SCRIPTPATH}/${1}/spec
+	p4 sync //depot/main/...
+	p4 sync //spec/...
+fi

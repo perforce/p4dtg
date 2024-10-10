@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<DTGConfiguration
+    version="1"
+    updated="060501193208">
+    <DataSource
+        type="SCM"
+        plugin="Perforce Jobs"
+        nickname="InternalDepot"
+        server="computer:1999"
+        user="scm_admin"
+        password=""
+        module="Jobs"
+        moddate_field="ChangedOn"
+        moduser_field="ChangedBy"
+        admin_user="scm_admin" />
+</DTGConfiguration>

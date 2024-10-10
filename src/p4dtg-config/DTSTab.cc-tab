@@ -1,0 +1,337 @@
+/*
+ * Copyright 2008 Perforce Software.  All rights reserved.
+ *
+ * This file is part of Perforce - the FAST SCM System.
+ */
+
+#include <QDebug>
+#include <QComboBox>
+#include <QFrame>
+#include <QGridLayout>
+#include <QGroupBox>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QMenu>
+#include <QVBoxLayout>
+#include "DTSTab.h"
+#include "DTSEdit.h"
+#include "P4DTG.h"
+#include <DataSource.h>
+#include <QHeaderView>
+
+void DTSTab::refreshList()
+{
+	int cur_row = list->currentRow();
+	list->clear();
+	QTableWidgetItem *item;
+	int row = 0;
+	int max_row = list->rowCount();
+	for( DataSource *src = global->dt_srcs; src; src = src->next )
+	{
+	    if( row >= max_row )
+	    {
+	        list->insertRow( row );
+	        max_row++;
+	    }
+	    item = new QTableWidgetItem( src->nickname );
+	    list->setItem( row, 0, item );
+	    item = new QTableWidgetItem( src->server );
+	    list->setItem( row, 1, item );
+	    item = new QTableWidgetItem( src->module );
+	    list->setItem( row, 2, item );
+	    item = new QTableWidgetItem( src->plugin );
+	    list->setItem( row, 3, item );
+	    if( src->deleted )
+	    {
+	        item = new QTableWidgetItem( "[deleted]" );
+	        list->setItem( row, 4, item );
+	    }
+	    else if( src->dirty )
+	    {
+	        item = new QTableWidgetItem( "[updated]" );
+	        list->setItem( row, 4, item );
+	    }
+	    row++;
+	}
+	list->setCurrentCell( cur_row, 0 );
+	listClicked( list->item( cur_row, 0 ) );
+	QStringList hheader;
+	hheader << tr( "Name" ) << tr( "Server" ) << tr( "Project" ) <<
+		tr( "Type" ) << tr( "Status" );
+	list->setHorizontalHeaderLabels( hheader );
+	list->resizeColumnsToContents();
+	list->verticalHeader()->hide();
+}
+
+DTSTab::DTSTab( QPushButton *save, QWidget *parent )
+    : QWidget( parent )
+{
+	save_btn = save;
+	QVBoxLayout *buttons = new QVBoxLayout;
+	edit_btn = new QPushButton( tr( "&Edit..." ) );
+	edit_btn->setToolTip( QString( tr( 
+		"Edit the selected Defect Tracking Source" ) ) );
+	new_btn = new QPushButton( tr( "&New..." ) );
+	new_btn->setToolTip( QString( tr( 
+		"Define a new Defect Tracking Source" ) ) );
+	delete_btn = new QPushButton( tr( "&Delete" ) );
+	delete_btn->setToolTip( QString( tr( 
+		"Delete the selected Defect Tracking Source" ) ) );
+	buttons->addWidget( edit_btn, 0 );
+	buttons->addWidget( new_btn, 0 );
+	buttons->addWidget( delete_btn, 0 );
+	buttons->addStretch( 1 );
+	connect( edit_btn, SIGNAL( clicked() ), this, SLOT( editPushed() ) );
+	connect( new_btn, SIGNAL( clicked() ), this, SLOT( newPushed() ) );
+	connect( delete_btn, SIGNAL( clicked() ), this, 
+		SLOT( deletePushed() ) );
+
+    	QHBoxLayout *list_buttons = new QHBoxLayout;
+	list = new QTableWidget( 1, 5, this );
+	//list->setSelectionMode( QAbstractItemView::SingleSelection );
+	list_buttons->addWidget( list, 1 ); // stretch this
+	list_buttons->addLayout( buttons, 0 );
+	connect( list, SIGNAL( itemPressed(QTableWidgetItem *) ),
+		this, SLOT( listClicked(QTableWidgetItem *) ) );
+
+    	QVBoxLayout *full = new QVBoxLayout;
+	QLabel *label = new QLabel( tr( "Defect tracking sources:" ) );
+	full->addWidget( label, 0 );
+	full->addLayout( list_buttons, 1 ); // Stretch this
+
+	QFrame *line = new QFrame();
+	line->setFrameShape( QFrame::HLine );
+	full->addWidget( line );
+
+	QHBoxLayout *nick = new QHBoxLayout;
+	label = new QLabel( tr( "Name:" ) );
+	nickname_edit = new QLineEdit( QString( "Beta Issues" ) );
+	nickname_edit->setReadOnly( true );
+	nickname_edit->setFrame( false );
+	dtstype_edit = new QLineEdit( QString( "Mercury Test Director" ) );
+	dtstype_edit->setReadOnly( true );
+	dtstype_edit->setFrame( false );
+	nick->addWidget( label, 0 );
+	nick->addWidget( nickname_edit, 1 );
+	nick->addWidget( dtstype_edit, 1 );
+	nick->addStretch( 1 );
+	full->addLayout( nick, 0 );
+
+	QGroupBox *box = new QGroupBox( tr( "Server connection details" ) );
+	QGridLayout *grid = new QGridLayout;
+	label = new QLabel( tr( "Server:" ) );
+	server_edit = new QLineEdit( QString( "computer:2345" ) );
+	server_edit->setReadOnly( true );
+	server_edit->setFrame( false );
+	grid->addWidget( label, 0, 0 );
+	grid->addWidget( server_edit, 0, 1 );
+	label = new QLabel( tr( "User name:" ) );
+	user_edit = new QLineEdit( QString( "admin" ) );
+	user_edit->setReadOnly( true );
+	user_edit->setFrame( false );
+	grid->addWidget( label, 1, 0 );
+	grid->addWidget( user_edit, 1, 1 );
+	label = new QLabel( tr( "Password:" ) );
+	password_edit = new QLineEdit( QString( "" ) );
+	password_edit->setReadOnly( true );
+	password_edit->setFrame( false );
+	grid->addWidget( label, 2, 0 );
+	grid->addWidget( password_edit, 2, 1 );
+	box->setLayout( grid );
+	full->addWidget( box, 0 );
+
+	status_edit = new QLabel( QString( tr( "Server status unknown" ) ) );
+	full->addWidget( status_edit, 0 );
+
+	QHBoxLayout *pbox = new QHBoxLayout;
+	label = new QLabel( tr( "For Project:" ) );
+	module_edit = new QLineEdit( QString( "WorkflowOne" ) );
+	module_edit->setReadOnly( true );
+	module_edit->setFrame( false );
+	pbox->addWidget( label, 0 );
+	pbox->addWidget( module_edit, 1 );
+	pbox->addStretch( 1 );
+	pbox->addStretch( 1 );
+	full->addLayout( pbox, 0 );
+ 
+	box = new QGroupBox( tr( "Reference Fields" ) );
+	grid = new QGridLayout;
+
+	label = new QLabel( tr( "Modified Date Field:" ) );
+	moddate_edit = new QLineEdit( QString( "ModifiedDate" ) );
+	moddate_edit->setReadOnly( true );
+	moddate_edit->setFrame( false );
+	grid->addWidget( label, 0, 0 );
+	grid->addWidget( moddate_edit, 0, 1 );
+
+	label = new QLabel( tr( "Modified By Field:" ) );
+	moduser_edit = new QLineEdit( QString( "ModifiedBy" ) );
+	moduser_edit->setReadOnly( true );
+	moduser_edit->setFrame( false );
+	grid->addWidget( label, 1, 0 );
+	grid->addWidget( moduser_edit, 1, 1 );
+
+	box->setLayout( grid );
+	full->addWidget( box, 0 );
+
+	edit_btn->setEnabled( false );
+	delete_btn->setEnabled( false );
+
+	displayObject( NULL );
+	refreshList();
+
+	setLayout( full );
+}
+
+void DTSTab::displayObject( DataSource *src )
+{
+	if( src != NULL )
+	{
+	    nickname_edit->setText( SAFEGET(src, nickname) );
+	    dtstype_edit->setText( SAFEGET(src, plugin) );
+	    server_edit->setText( SAFEGET(src, server) );
+	    user_edit->setText( SAFEGET(src, user) );
+	    password_edit->setText( SAFEGET(src, password) );
+	    switch( src->status )
+	    {
+	    default:
+	    case DataSource::UNKNOWN:
+	        status_edit->setText( QString( 
+		    tr( "Unknown server status" ) ) );
+	        break;
+	    case DataSource::FAIL: 
+	        status_edit->setText( QString( 
+		    tr( "Unable to connect to server" ) ) );
+	        break;
+	    case DataSource::PASS:
+	        status_edit->setText( QString( 
+		    tr( "Valid connection to server" ) ) );
+	        break;
+	    case DataSource::READY:
+	        status_edit->setText( QString( 
+		    tr( "Valid connection and server configured" ) ) );
+	        break;
+	    }
+	    module_edit->setText( SAFEGET(src, module) );
+	    moddate_edit->setText( SAFEGET(src, moddate_field) );
+	    moduser_edit->setText( SAFEGET(src, moduser_field) );
+	    edit_btn->setEnabled( true );
+	    delete_btn->setEnabled( true );
+	}
+	else
+	{
+	    nickname_edit->setText( "" );
+	    dtstype_edit->setText( "" );
+	    server_edit->setText( "" );
+	    user_edit->setText( "" );
+	    password_edit->setText( "" );
+	    status_edit->setText( tr( "No server is defined" ) );
+	    module_edit->setText( "" );
+	    moddate_edit->setText( "" );
+	    moduser_edit->setText( "" );
+	    edit_btn->setEnabled( false );
+	    delete_btn->setEnabled( false );
+	}
+}
+
+void DTSTab::editPushed()
+{
+	int row = list->currentRow();
+	int i = 0;
+	DataSource *src, *prev;
+	for( prev = NULL, src = global->dt_srcs; 
+		src && i < row; 
+		src = src->next )
+	{
+	    prev = src; 
+	    i++;
+	}
+	if( src )
+	{
+	    DataSource *tmp = src->copy();
+	    DTSEdit *edit = new DTSEdit( tmp, this );
+	    int result = edit->exec();
+	    if( result )
+	    {
+	        if( prev )
+	            prev->next = tmp;
+	        else
+	            global->dt_srcs = tmp;
+	        tmp->next = src->next;
+	        src->next = NULL;
+	        global->replace_src( src, tmp );
+	        delete src;
+	        tmp->dirty = 1;
+	        save_btn->setEnabled( true );
+	        refreshList();
+	    }
+	    else
+	        delete tmp;
+	    delete edit;
+	}
+}
+
+void DTSTab::newPushed()
+{
+	DataSource *src = new DataSource( -1, DataSource::DTS );
+	DTSEdit *edit = new DTSEdit( src, this );
+	int result = edit->exec();
+	if( result )
+	{
+	    src->next = global->dt_srcs;
+	    global->dt_srcs = src;
+	    src->dirty = 1;
+	    save_btn->setEnabled( true );
+	    refreshList();
+	}
+	else
+	    delete src;
+	delete edit;
+}
+
+void DTSTab::deletePushed()
+{
+	int row = list->currentRow();
+	int i = 0;
+	DataSource *src;
+	for( src = global->dt_srcs; src && i < row; i++, src = src->next );
+	if( src )
+	{
+	    if( !src->deleted )
+	        list->setCurrentCell( list->currentRow(), 0 );
+	    src->deleted = !( src->deleted );
+	    src->dirty = 1;
+	    save_btn->setEnabled( true );
+	    refreshList();
+	}
+}
+
+void DTSTab::listClicked( QTableWidgetItem * /* item */ )
+{
+	int row = list->currentRow();
+	int i = 0;
+	DataSource *src;
+	for( src = global->dt_srcs; src && i < row; i++, src = src->next );
+	if( src && i == row )
+	{
+	    displayObject( src );
+	    if( src->deleted )
+	    {
+	        delete_btn->setText( tr( "Un&delete" ) );
+	        edit_btn->setEnabled( false );
+	    }
+	    else
+	    {
+	        delete_btn->setText( tr( "&Delete" ) );
+	        edit_btn->setEnabled( true );
+	    }
+	    delete_btn->setEnabled( true );
+	}
+	else
+	{
+	    displayObject( NULL );
+	    delete_btn->setText( tr( "&Delete" ) );
+	    delete_btn->setEnabled( false );
+	    edit_btn->setEnabled( false );
+	}
+}

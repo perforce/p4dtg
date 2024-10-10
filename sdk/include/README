@@ -1,0 +1,11 @@
+INTEGRATION RESOURCES
+===============================
+Read the header comments in 'DTG-interface.h' for details on each of
+the functions required in a plugin implementation.
+
+DTG-interface.h		Defines the data structures and functional interfaces 
+			needed to be provided by a specific plugin
+DTG-platform.h		Defines the platform specific changes to functions
+DTG-typedefs.h		Defines the functional prototypes for the interfaces 
+			provided by plugins
+README			This file

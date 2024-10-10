@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<DTGConfiguration
+    version="1"
+    updated="2006/06/14 22:57:42 UTC">
+    <DataSource
+        type="DTS"
+        plugin="Perforce Jobs"
+        nickname="2222"
+        server=":2222"
+        user="dts_admin"
+        password=""
+        module="Jobs"
+        moddate_field="ChangeDate"
+        moduser_field="ChangeBy"
+        admin_user="dts_admin" />
+</DTGConfiguration>

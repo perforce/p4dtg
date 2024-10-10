@@ -1,0 +1,1334 @@
+                             Release Notes for
+                   P4DTG, the Perforce Defect Tracking Gateway
+
+                              Version 2024.1
+
+Introduction
+
+    These notes include release-specific information about the
+    Perforce Defect Tracking Gateway. For details about installing,
+    configuring and using this product, consult the Defect Tracking
+    Gateway Guide.
+
+    The Perforce Defect Tracking Gateway integrates Perforce with
+    third-party defect tracking systems. Perforce currently supports
+    Bugzilla, Jira Cloud, and Jira on-premises (Data Center).
+    Other defect tracking systems are supported by third-parties
+    (e.g., Fogbugz from Fogcreek).
+
+    The Perforce Defect Tracking Gateway requires 2018.1 or later Helix
+    Core server.
+
+    The P4DTG JIRA-REST plug-in supports Windows and Linux platforms using
+    the supported Atlassian JIRA REST API. This plug-in supports JIRA
+    servers v7 On-Premises/Data Center or above and Jira Cloud.
+    
+    The Bugzilla plug-in supports Windows and Linux platforms
+    using MySQL 5+. This plug-in tests with Bugzilla 5.0.x. 
+    Many other versions are known to work and supported but are 
+    not tested.
+
+--------------------------------------------------------------------------------
+
+Supported Platforms
+
+    Only 64 bit platforms are supported.
+
+    P4DTG Configuration tool:
+        Microsoft Windows:
+           Windows 10 for Intel x64
+           Windows 11 for Intel x64
+        Linux:
+           Ubuntu 20.04
+           
+        Any platform not listed is not actively tested by Perforce.
+        The Configuration tool may run on platforms not actively tested.
+
+        P4DTG can be configured on a different platform than the replication
+        engine.  For details, see the Knowledgebase article
+        https://portal.perforce.com/s/article/2742.
+
+
+    P4DTG Replication Engine:
+        Linux kernel 2.6+ (glibc 2.6+) for Intel x64
+        Windows 10 for Intel x64
+        Windows 11 for Intel x64
+        Windows Server 2016 for Intel x64
+        Windows Server 2019 for Intel x64
+        Windows Server 2022 for Intel x64
+        
+        Only Windows 10, Windows 11, and Ubuntu 20 are actively 
+        tested.
+
+--------------------------------------------------------------------------------
+
+Installing the Perforce Defect Tracking Gateway
+
+    WINDOWS INSTALLATION:
+    To install the Perforce Defect Tracking Gateway, download and run the
+    installer from the Perforce web site.
+
+    LINUX INSTALLATION:
+    To install the Perforce Defect Tracking Gateway, download the tar file
+    and uncompress it in the directory where you intend to install the product.
+
+    To test the basic operation of the system, invoke the p4dtg-test.exe
+    executable and issue the following commands (issue the commands
+    indicated by the prompt ">"; output consists of "Loading module"
+    and "Module loaded" messages).
+
+      WINDOWS:
+        C:> p4dtg-test.exe
+        > LL plugins\p4jobdt.dll
+        Loading module: [plugins\p4jobdt.dll]
+        Module loaded: plugins\p4jobdt.dll
+        > LT
+        Module tests passed
+        > LF
+        Module freed
+        > Q
+
+      LINUX:
+        host% ./p4dtg-test
+        > LL ./plugins/p4jobdt.so
+        Loading module: [./plugins/p4jobdt.so]
+        Module loaded: ./plugins/p4jobdt.so
+        > LT
+        Module tests passed
+        > LF
+        Module freed
+        > Q
+
+Usage Notes
+
+    - IMPORTANT: When creating a mapping with the Bugzilla
+      plug-in, map the Perforce field named "Fix Details" *only* to
+      the "Fixes" field. While the config tool permits you to create
+      multiple mappings for this field, a runtime error will result if you do.
+
+    - The engine does not replicate transactions that are submitted using its
+      own username. To avoid this problem, ensure that this username is employed
+      exclusively by the replication engine. This error is the most common cause
+      of replication failure.
+
+    - The configuration tool requires write-access to the 'config', 'help',
+      'jira', and 'repl' subdirectories.   Windows users must start the
+      configuration tool with "Run as Administrator."
+
+    - Windows and Linux support for Perforce tickets:  To use tickets, leave
+      the password field blank for the Perforce Data Source. You must obtain
+      a valid ticket prior to running the configuration tool.   For more
+      detail, see https://community.perforce.com/s/article/3932.
+
+    - To replicate defect tracker fields that might contain unmatched
+      double quotes, ensure that the the target jobspec field is TEXT.
+
+    - The windows replication engine runs as a process that is spawned
+      by a Windows service. The configuration tool automatically installs
+      the service when you start replication for the first time. The service
+      is deleted when you delete the associated mapping.
+
+      After installation, use the configuration tool to start and stop
+      replication for specific mappings. To ensure that the replication
+      engine restarts when the machine is rebooted, use the system
+      Service control panel to set the replication service to
+      Automatic. If you configure the replication engine as an
+      Automatic service, you must run the replication engine on a
+      machine other than the machine where Perforce and Quality Center
+      are running, because you cannot control the order in which
+      Windows starts services.
+
+      - On Linux, use the configuration tool to start and stop
+      replication for specific mappings. From the shell, you can start and
+      stop the replication engine using the following commands (where P4DTGDIR
+      is the location where P4DTG is installed and MAPNAME is the name of the
+      specific mapping).
+
+      Start replication:
+      cd P4DTGDIR
+      ./p4dtg-repl MAPNAME &
+
+      Stop replication: (The replication engine will exit safely.)
+      cd P4DTGDIR
+      touch repl/stop-MAPNAME
+
+      The engine deletes the repl/run-MAPNAME file when it exits.
+
+      - If a change on the Perforce side is rejected by any defect tracker,
+      the Perforce job is marked as being in an error state, and further
+      attempts to replicate it cease until the error is corrected. Error
+      states are recorded in the DTG_ERROR field of the affected job.
+
+
+--------------------------------------------------------------------------------
+Minor new functionality in 2024.1
+
+	#2196053 (Bug #78504)
+	    Technical Preview:  Allow setting the SocketTimeout, ConnectionTimeout,
+	    and RequestTimeout in jira-rest-config.xml's JiraHandling element.
+
+	#2192436 (Bug #104586)
+	    Many other issue fields can now be replicated by first defining the 
+	    fields in jira-rest-config.xml as custom fields.  For example, "Time 
+	    Spent" can now be copied to the job.
+
+	#2192415 (Bug #88895)
+	    JIRA Label fields can now be copied to the Perforce job.  The reverse
+	    direction (job to JIRA) is not supported.
+
+--------------------------------------------------------------------------------
+Bugs fixed in 2024.1
+
+	#2577325 (Bug #119935)
+	    For Jira Data Center (on-premises), a Personal Access Token (PAT) is 
+	    now supported.  Enter "*" for the user and the PAT for the password.
+
+	#2553477 (Bug #119134)
+	    Generated JQL now correctly quotes custom field names.
+
+	#2267863 (Bug #110065)
+	    Projects with key that's a JQL keyword will now replicate.
+
+	#2265719 (Bug #109986)
+	    The Jira java process startup no longer uses -XXUseConcMarkSweepGC.
+
+	#1950284 (Bug #102150)
+	    Jira Cloud can now replicate JIRA's Assignee and Reporter fields.
+	    Only a "copy to" Perforce is supported.  See jira-rest-config.xml.
+
+	#1925907 (Bug #101543)
+	    Updated Atlassian Java client library to support Jira Cloud.  Creating
+	    Jira Cloud Issues is not supported.
+
+--------------------------------------------------------------------------------
+Minor new functionality in 2018.1
+
+	#1692471 (Bug #96203)
+	    With the JIRA-REST plugin, you can now select project=*All* but exclude
+	    projects that you define in jira-rest-config.xml's JiraHandling element.
+
+
+--------------------------------------------------------------------------------
+Bugs fixed in 2018.1
+
+	#1693576 (Bug #91062)
+	    Changing a job field to blank now updates a non-Select JIRA custom field
+	    (JIRA-REST plugin.)
+
+	#1692471 (Bug #76747)
+	    The JIRA-REST plugin, when using project=*All*, will no longer report
+	    a 400 error and stop replicating if your p4dtg user does not have
+	    access to a jira project's issues.  You can now control the issues to
+	    replicate with your p4dtg user's permissions to projects.
+
+	#1692471 (Bug #87052)
+	    JIRA-REST plugin now issues fewer REST requests to JIRA, especially
+	    when your source is for project=*All* or you segment on multiple
+	    projects.
+
+--------------------------------------------------------------------------------
+Major new functionality in 2014.1
+
+	#774366 (Bug #64962)
+	    Added a new JIRA-REST plug-in to replicate Perforce jobs with
+	    Atlassian JIRA Issues. This connects to the JIRA server using
+	    the JIRA REST Web Services API. Users can create new Perforce
+	    jobs and mirror them as new issues in JIRA. Users can also edit
+	    certain fields in a Perforce job and have their changes mirrored
+	    in JIRA.
+
+Bugs fixed in 2014.1
+
+	#901849 (Bug #71975)
+	    Fixed a JQL search problem with the JIRA-SOAP plugin when the
+	    query includes an issue key that is no longer in the project.
+	    This problem occurs when the issue is moved to another project
+	    and/or renamed.
+
+	#901854 (Bug #74253)
+	    Fixed a JQL search problem with the JIRA-REST plugin where gaps
+	    exist between issue keys. The solution uses the new advanced JIRA
+	    REST API search interface with the "startAt" index and "maxResults"
+	    as parameters.
+
+--------------------------------------------------------------------------------
+Compatibility information in 2012.1
+
+	#477027 (Bug #50436,48924)
+	    Verified JIRA plug-in support for JIRA servers v4.1.x - v5.0.x.
+
+	#477261 (Bug #56408)
+	    Verified Bugzilla plug-in support for Bugzilla server v4.2.x.
+
+Minor new functionality in 2012.1
+
+	#476717 (Bug #56587)
+	    The JIRA plug-in now checks the current status/resolution of the
+	    issue, and send status update only if it is different. Note that
+	    this only applies to issue creation.
+
+--------------------------------------------------------------------------------
+Major new functionality in 2010.2
+
+	#256909 (Bug #37660)
+	    Added a plug-in to replicate Perforce jobs with Redmine Issues.
+	    This connects to the MySQL server underneath Redmine, and does not
+	    support alternative database engines.
+
+	#266609 (Bug #24727)
+	    Added a plug-in to replicate Perforce jobs with Atlassian JIRA
+	    Issues. This connects to the JIRA server using the SOAP Web
+	    Services API. Users can create new Perforce jobs and mirror them as
+	    new issues in JIRA. Users can also edit certain fields in a
+	    Perforce job and have their changes mirrored in JIRA.
+
+	#255453 (Bug #39477)
+	    Encode passwords written to the src-*.xml files. While existing
+	    src-*.xml files will continue to function, for improved security
+	    you should edit the DataSource, click the check connection button,
+	    click OK, and then click Apply. This will re-write the file and
+	    encode the password.
+
+	#255454 (Bug #22668)
+	    The configuration tool will no longer display passwords other than
+	    during editing of the value.
+
+	#255058 (Bug #38659)
+	    Performance improvement when using segmentation. Segmentation
+	    criteria will be passed to the plug-in prior to requesting changed
+	    defects so that the list can be filtered at the server level instead
+	    of by the replication engine. This will only be used for plug-ins
+	    which implement the optional 'proj_segmentation_filter' interface.
+
+	#255703,256280 (Bug #39746)
+	    'General Wait Duration' attribute added to Map. This is accessible
+	    from the Map Editor and will be used for the default offline wait
+	    time for plug-ins which do not implement the server_offline
+	    interface or if you specified a -1 for the Wait Duration for a
+	    DataSource.
+	    (This attribute also is used for the reset server wait loop. See
+	    Minor new functionality for more details)
+
+	#256658 (Bug #36169)
+	    The replication engine will go into a wait-loop if either server
+	    is offline during startup. The General Wait Duration attribute will
+	    be used for this wait-loop.
+
+Minor new functionality in 2010.2
+
+	#309908 (Bug #45339)
+	    The JIRA query batch size is configurable via an attribute. This
+	    attribute affects the memory used by the Java process by limiting
+	    the number of issues returned per query of the JIRA server. A small
+	    number limits the memory but increases processing time when there
+	    are a large number of issues to be processed. A larger number
+	    improves performance but consumes a much larger amount of memory.
+	    Default is 100.
+
+	#308359 (Bug #45187)
+	    The replicator will log additional connection information if
+	    either server fails the check_connection step during startup.
+
+	#304729 (Bug #44408)
+	    The Perforce plug-in has a new attribute "Generate job id" which
+	    causes the plug-in to generate the Job field value for all new
+	    jobs replicated from the DTS. If used, the generated name is of
+	    the form:  DTG_DTISSUE-MAPID.  The MapID is used to make sure that
+	    the jobname is unique. If a different form of job name is desired
+	    then use a Job In trigger. See the doc/bugzilla directory for an
+	    example of such a trigger.
+
+	#304604 (Bug #44470)
+	    The JIRA plug-in now correctly requires a UTF-8 data connection
+	    with the associated Perforce server. Read next entry for details
+	    on how to connect with a non-Unicode Perforce server.
+
+	#304573 (Bug #41042)
+	    Support the Perforce plug-in translating charsets for non-Unicode
+	    servers. This adds two new attributes to the Perforce plug-in: One
+	    to define the character set and the other to specify what to do if
+	    there are characters missing from the conversion. Use these new
+	    attributes to connect a non-Unicode Perforce server to a defect
+	    tracking source which requires UTF8 encoded data (e.g., JIRA).
+
+	#302665 (Bug #44844)
+	    When a defect/issue fails the segmentation filter, any log entries
+	    will have additional information on which field/value combination
+	    failed.
+
+	#302414 (Bug #44799)
+	    Report an error when there is a problem communicating to the JIRA
+	    server.
+
+	#302084 (Bug #44805)
+	    Return a descriptive JIRA server error message when replicating
+	    JIRA issue types unavailable to the JIRA project.
+
+	#301270 (Bug #41894,44469,44725)
+	    Added JIRA plugin specific logging mechanism to output JIRA error
+	    messages to a log file.
+
+	#303336 (Bug #41595)
+	    Added support for Bugzilla 4.0.x.  Note that the 'Keywords' field
+	    is no longer available for mapping.
+
+	#300251,300836 (Bug #44632,44679)
+	    By default, the JIRA plug-in will disallow creating of new JIRA
+	    issues. This can be changed using the Attributes of the JIRA
+	    DataSource.
+
+	#299977 (Bug #44221)
+	    The configuration tool will prevent segmenting of data sources
+	    which have already been mapped in an unsegmented manner.
+
+	#299692,301448,301570 (Bug #41880,44628)
+	    The JIRA plugin's implementation of the 'proj_segmentation_filter'
+	    interface. Modify select list to allow selection of *All* projects.
+	    Customer can then segment from list of returned projects. It
+	    improves performance by using filters to reduce the number of
+	    defects returned from the defect tracking server.
+
+	#299059 (Bug #44532)
+	    Added support for field names with spaces.
+
+	#299059,301719,301933 (Bug #44405,44727,44783)
+	    Added support for handling JIRA custom workflows with steps and
+	    transitions by user defined entries in the JIRA plug-in config
+	    XML file.
+
+	#298712 (Bug #43566)
+	    Added support for JIRA custom fields by user defined entries in
+	    the JIRA plug-in config XML file.
+
+	#272442 (Bug #41520)
+	    If available, Fix records for files will contain 'move' actions in
+	    addition to the standard 'add/edit/delete' actions..
+
+	#270931 (Bug #41451)
+	    The p4dtg-test tool will now accept up to 1000 characters on the
+	    input line.
+
+	#270928 (Bug #41263)
+	    The Bugzilla plug-in supports marking all Fix Details appended to
+	    the comments as 'private'. The default value is to mark them as
+	    public. Use the 'Private Fix Details' attribute to change this
+	    setting.
+
+	#267735 (Bug #40993)
+	    The list of fields available for Segmentation no longer includes
+	    fields beginning with either 'DTGConfig-' or 'DTGAttribute-'. These
+	    pseudo-fields are only useful within the context of mapping.
+
+	#264329 (Bug #39672)
+	    The Bugzilla plugin will now be more efficient when using segmented
+	    replication.
+
+	#263769 (Bug #39547)
+	    The Bugzilla plugin has been updated to support Bugzilla 3.6.2.
+
+	#257873 (Bug #38664)
+	    Add two additional Map-level attributes for logging when a large
+	    number of defects are returned for processing during a replication
+	    cycle.
+
+	    'Logging of Large Update Cycles' - For logging levels 1 or higher,
+	    generate a log entry whenever the number of defects/issues/jobs
+	    being processed during a replication cycle equals or exceeds this
+	    value. Default is 0 specifying no additional logging is to be
+	    generated.
+
+	    'Additional logging during large updates' - Specifies how often
+	    during a logged large update to generate additional log messages.
+	    Requires Logging of Large Update Cycles to be enabled and a log
+	    level of 1 or higher. Default is 0 indicating no additional logging
+	    during processing of large cycles. Logging begins this number of
+	    defect after the value specified for 'Logging of Large Update
+	    Cycles'.
+
+	#257478 (Bug #39869)
+	    At log level 2 or higher, the Perforce plug-in will log the
+	    attributes passed in when creating a connection.
+
+	#256638,299016 (Bug #39716)
+	    If the replication log is moved during replication, the engine will
+	    recreate the log. This is to support site specific log rotation. In
+	    general, sites should not be using log levels higher than 1 on an
+	    on-going basis. If the log is removed, it will not be recreated
+	    until the replication engine generates its next log message. On
+	    Windows, the log is opened and closed for each message logged.
+
+	#255703 (Bug #39555)
+	    In unusual circumstances, a plug-in may enter a state where it
+	    claims to be online and yet is unable to process any requests.
+	    In these situations, the server will be reset and if that fails
+	    the replication engine will enter into the server-reset loop which
+	    will retry reseting both servers every 2.5-minutes or as specified
+	    by a new Map level attribute "General Wait Duration".
+
+	#256646 (Bug #33764)
+	    If the p4dtg-config tool is run from a directory other than the
+	    p4dtg installation directory, it will output error messages
+	    not only to the splash window but also to stderr.
+
+	#256948 (Bug #33531)
+	    The Perforce DataSource pages of the configuration tool label the
+	    user name field as 'User name' instead of 'Admin user name'. Admin
+	    priviledge is not required for the P4DTG user.
+
+Bugs fixed in 2010.2
+
+	#592581 (Bug #63588)
+	    Removed setting of a default future "Due Date" during JIRA issue
+	    creation.
+
+	#491493 (Bug #57829)
+	    Fixed JIRA plug-in date time issue when DTG and JIRA server are
+	    in different time zones.
+
+	#462503 (Bug #55953)
+	    Fixed problem updating JIRA issue fields while closing the JIRA
+	    issue in the same request.
+
+	#451441 (Bug #55415)
+	    Added support for updating Status/Resolution during new JIRA
+	    issue creation. This allows "resolved" Perforce jobs to be
+	    replicated over to the JIRA server with the correct statuses
+	    (closed, fixed, etc.).
+
+	#451226 (Bug #54077)
+	    Added cache for getting the JIRA server info (except date time)
+	    and custom fields. This helps reduce the number of SOAP calls to
+	    the JIRA server. Note that new JIRA server info and custom fields
+	    will not be reflected without restarting the DTG JIRA plug-in.
+
+	#449420 (Bug #55339)
+	    Fix for Bug 53555 included in jira-dts.jar at changelist 449420
+
+	#435583 (Bug #53555)
+	    Fixed session timed out exception in JIRA plug-in. Renew the JIRA
+	    SOAP login token when a specified time interval (default 15 minutes)
+	    has elapsed. The JIRA SOAP login token has a lifetime hard coded 30
+	    minutes timeout since the last SOAP login.
+
+	#406043 (Bug #51363)
+	    Fixed problem with JIRA plug-in replication stopping because of
+	    query validation failure due to field 'id' is negative. The added
+	    bounds checking will ensure the query batch id low will not exceed
+	    the id high and both are non-negative.
+
+	#372695 (Bug #49915)
+	    The JIRA plug-in now properly handles deleted (non-existing)
+	    issues. Jobs linked to deleted or non-existing issues in JIRA
+	    will fail out of replication.
+
+	#314833 (Bug #45556)
+	    Fixed various memory leaks in the Redmine plug-in.
+
+	#314676 (Bug #45372)
+	    Redmine plug-in will now enforce the requirement DueDate is the
+	    same or later than the StartDate if both are defined.
+
+	#306900,306888 (Bug #44983)
+	    Fixed a slow memory leak in the JIRA plug-in. The p4dtg-repl memory
+	    grows over time.
+
+	#306777 (Bug #45100)
+	    Correct JIRA plug-in error message for the TCP Port attribute.
+
+	#305584 (Bug #44963)
+	    The Bugzilla plugin now properly segments on 'Product/Component'.
+	    Note that segmenting just on 'Component' is no longer possible -
+	    use 'Product/Component' instead.
+
+	#303323 (Bug 44547)
+	    The Bugzilla plugin now properly segments using 'Product' field.
+
+	#302853 (Bug #44832)
+	    Show only project specific JIRA issue types when a single project
+	    is selected.
+
+	#301427,301583 (Bug #44547, 44757)
+	    In the Buzilla plug-in, allow for segmentation on either the
+	    Product or the Component fields.
+
+	#299059 (Bug #44403)
+	    Log an error and return an error response message when a target
+	    status is not defined in JIRA workflow step transitions.
+
+	#294213 (Bug #43777,43779)
+	    Enable the JIRA plug-in to handle the replication of JIRA sub-task
+	    type issues.
+
+	#290471 (Bug #43826)
+	    The Redmine plug-in now runs a valid SQL query when attempting to
+	    insert issue/changeset relationships. This still requires changeset
+	    information to be present before the relationship is created.
+
+	#281354 (Bug #42711)
+	    If the DataSource XML file is corrupt and missing required fields,
+	    the replication engine will now return an error message instead of
+	    crashing.
+
+	#281353 (Bug #32109)
+	    In unusual circumstances when the replication engine is terminated
+	    by an external system, the settings file can become corrupted. This
+	    change is intended to preserve a valid version in a backup copy of
+	    the settings file. If the backup cannot be created, then the
+	    replication engine will exit with an appropriate message.
+
+	#270910 (Bug #41396)
+	    For the Bugzilla plug-in, when the last modified value is updated
+	    to now() more than once within a second, process the UPDATE as
+	    successful instead of failing out the job/issue.
+
+	#263018 (Bug #38775)
+	    The sample trigger (changeid.pl) no longer treats Perforce error
+	    messages in the body of jobs as real command errors.
+
+	#260124 (Bug #40162)
+	    When a new Mapping is created, the new map will be the one
+	    selected in the list after closing the Mapping Editor.
+
+	#258052 (Bug #39952)
+	    Enable p4dtg-test tool to handle DW commands where the value
+	    contains multiple sequential spaces.
+
+	#257629 (Bug #29253)
+	    In the configuration tool, when starting or stopping replication,
+	    the "Start/Stop" button can get into disabled state. To re-enable
+	    this button, you must select another mapping or another tab. This
+	    behavior has been changed to occur significantly less often.
+
+	#257049 (Bug #39130)
+	    Check every 2 seconds during replication polling period for stop
+	    requests. This should prevent Windows from terminating the process
+	    prior to it cleaning up the run-* file. Any automatic startup
+	    script should remove the run-* file from the repl directory prior
+	    to restarting the replication engine.
+
+	#255357 (Bug #39685)
+	    The Perforce plug-in will not load or save defects with names
+	    beginning with a dash.
+
+	#244472 (Bug #38893)
+	    Fixed a rare memory leak when failing to load an XML file.
+
+Minor new functionality in 2010.1
+	300906 (Bug #44700)
+	    Added utility functions 'mk_string' and 'cp_string' into the
+	    share directory and library. This removes duplicate copies of
+	    the same functions from all of the plug-ins. See share/dtg-src.h
+	    for details.
+
+Bugs fixed in 2010.1
+
+--------------------------------------------------------------------------------
+Major new functionality in 2010.1
+
+	#253011 (Bug #38659)
+	    Add optional interface: proj_segmentation_filters()
+	    See p4jobdt directory for an example implementation of this
+	    interface.
+
+	    The following interface is called once by the replication engine
+	    during server initialization (when the replication engine is
+	    starting up and whenever servers are reset).
+
+	    void proj_segment_filters( void *projID,
+					struct DTGFieldDesc *filters )
+
+	    This optional interface provides information on the segmentation
+	    filter being used by the replication engine. Plug-ins implementing
+	    this interface should restrict the results from
+	    'proj_list_changed_defects' to only include defects which match all
+	    of the filters passed in by this interface. Each individual item
+	    in 'filters' contains a field name and the select_values list of
+	    matching values for that field. In other words, the list of items
+	    in 'filters' are AND criteria and the select_values of each item
+	    are 'OR' criteria.  The plug-in should make its own copy of the
+	    list of filters. See the p4jobdt source for MyDTGProj.cc for an
+	    example implementation. Currently, AND criteria are not supported
+	    by P4DTG.
+
+--------------------------------------------------------------------------------
+Minor new functionality in 2010.1
+
+	#257480 (Bug #38564)
+	    Add Map-level attributes to the ones passed into the dt_connect
+	    interface. The new attributes are:
+		'DTG-MapID' - Nickname of the replication map
+		'DTG-SrcID' - Nickname of the DataSource associated with plug-in
+		'DTG-LogLevel' - Logging level of the replication engine
+
+	#256280 (Bug #39746)
+	    If the optional server_offline interface is either undefined or
+	    returns -1, then the 'General Wait Duration' attribute of the
+	    replication map will be used for the wait duration.
+
+Bugs fixed in 2010.1
+
+	#257313 (Bug #39856)
+	    In the Mantis example, MyDTS::get_server_date incorrectly formated
+	    the date string. The corrected code uses the time format of
+	    '%a %b %d %T %Y' which matches what is returned from Mantis for
+	    the modified date field.
+
+	#256289 (Bug #39747)
+	    In the Mantis example, format_date and extract_date were incorrectly
+	    coded. The revised code assumes that Mantis does not require the
+	    day of the week to be included in dates passed back to the server.
+
+	#255361 (Bug #39312)
+	    The 'DTG-*.cc' files now correctly specifies 'char *' as the
+	    return type for format_date. Plug-ins should correct this as well
+	    though it causes no issues at the current time.
+
+	#244463 (Bug #38893)
+	    Fixed a memory leak in the Mantis example code.
+
+--------------------------------------------------------------------------------
+Major new functionality in 2009.2
+
+	#176885 (Bug #36081)
+	    Added a plug-in to replicate Perforce jobs into a MySQL database to
+	    allow for richer queries and bidirectional updates.
+
+	#217350 (Bug #35593)
+	    Provide an example showing how to integrate DTG with a DTS which
+	    does not have an easily accessibly C/C++ interface. 'tcpdts/'
+	    shows how to setup a DTG plug-in which acts as a proxy to an
+	    external DTS. Requests and responses between DTG and the DTS are
+	    passed over TCP as XML messages. The plug-in for this type of
+	    integration is developed in C++ and the associated connector in
+	    whatever language is convient for the DTS. This example includes
+	    example connectors in Perl and Java. An integration using this
+	    technique would include at least two pieces: a version of the
+	    tcpdts C++ plug-in dedicated to the type of DTS and the connector
+	    which would run as a server process.
+
+	#214876 (Bug #34087)
+	    Add optional interface: proj_referenced_fields()
+	    See mydts directory for an example implementation of this interface
+
+	    The following interface is called once by the replication engine
+	    during server initialization (when the replication engine is
+	    starting up and whenever the servers are reset). Any field which
+	    begins with 'DTGConfig-' or 'DTGAttribute-' will not be passed
+	    into this interface.
+
+	    void proj_referenced_fields( void *projID,
+					struct DTGStrList *fields )
+
+	    This optional interface provides a list of all of the fields that
+	    are required by the DataMapping being used by the replication
+	    engine. This information might provide some plug-ins with
+	    performance gains by restricting the fields that are retrieved from
+	    the DTS. These fields are the only fields that are read or written
+	    by the replication engine. The plug-in must make its own copy of the
+	    list of fields.
+
+	#214758,214789 (Bug #34435)
+	    Add optional interface: dt_get_message()
+
+ 	    int dt_get_message( void *dtID, struct DTGError *error );
+
+	    Optional interface for requesting a message be inserted into the
+	    replication log. The return value indicates the log level that is
+	    required for insertion. The message should be contained in the
+	    error->msg field and the rest of the error structure is ignored.
+	    This method, if defined, should not contact the server to process
+	    the call. See mydts directory for an example implementation of this
+            interface.
+
+	    This interface is checked after creating any dtg object
+	    (Server, Project, Defect), after retrieving changed defect lists,
+	    and after saving a defect. This interface is not intended to replace
+	    the normal error processing system, and is not called if there is
+	    an error reported by the creation or retrieval interfaces.
+
+Minor new functionality in 2009.2
+
+	#225072, 224635 (Bug #36771)
+	    Enable the p4dtg-test tool to accept quoted arguments. Use either
+	    ' or " for quoting. Whichever symbol is used for quoting cannot be
+	    used within the quoted argument.
+
+	#222677 (Bug #36555)
+	    If the target field of a one-way mapping is changed, the replication
+	    engine will replace that value with the source value on the next
+	    replication cycle. Previously, the value would be replaced the
+	    next time the source defect was updated. This is an error in user
+	    behaviour and should be prevented by using a trigger on jobs like
+	    the 'changeid.pl' script.
+
+	#221178 (Bug #36168)
+	    By default, the replication engine will wait for servers to come
+	    back online for all plug-ins unless the plug-in specifies that
+	    waiting should not occur.
+
+	#214004 (Bug #34786)
+	    Added support for Bugzilla 3.4.1.
+
+	#219512 (Bug #35879)
+	    Expand p4dtg-test's DW command to accept values containing spaces
+
+	#221335 (Bug #36248)
+	    Expand p4dtg-test's SP command to accept values containing spaces
+
+	#221178 (Bug #36168)
+	    By default, the replication engine will wait for servers to come
+	    back online for all plug-ins unless the plug-in specifies that
+	    waiting should not occur. This is controllable by implementing the
+	    optional dt_server_offline interface.
+
+Bugs fixed in 2009.2
+
+	#258754,262059 (Bug #40065)
+	    Bugzilla: Add "Change offset" setting to prevent skipped issues.
+
+	    Heavy activity can cause a delay between the time that Bugzilla
+	    records in the ModifiedDate field and the time that the issue is
+	    actually committed. This discrepancy might cause P4DTG Replication
+	    Engine to skip issues. This fix helps ensure that records are not
+	    skipped. For details, see the Bugzilla documentation in README.txt
+	    under the doc directory.
+
+	#237251 (Bug #37991)
+	    Correct the issue introduced in the performance patch where the
+	    last file in a list of files for a fix was not being replicated.
+
+	#233529,234198 (Bug #37670)
+	    Significantly improve the performance of the replication engine
+	    when processing fixes with a large number of associated files.
+
+	#220561 (Bug #36823)
+	    If one or both of the servers are inaccessible during start up
+	    of the replication engine, report that the mapping is unable to
+	    be validated instead of reporting that it is invalid.
+
+	#223067 (Bug #36609)
+	    Prior to invoking the Replication engine, the Configuration tool
+	    will request a recheck of the SCM server when the internal state
+	    indicates a potential issue.
+
+	#222504 (Bug #34131)
+	    Quality Center plug-in ignores the BG_REQUEST_ID, BG_REQUEST_NOTE,
+	    BG_REQUEST_SERVER, and BG_REQUEST_TYPE fields preventing a
+	    "Type mismatch" error in the Quality Center COM library.
+
+	#222739, 222381 (Bug #35906)
+	    Normalize use of newlines in Fix descriptions
+
+	#221170 (Bug #36233)
+	    Correctly report the rare cases where the network or p4d server
+	    becomes inaccessible while the Perforce plug-in is retrieving
+	    the server date.
+
+	#222244, 219611 (Bug #35847)
+	    Do not record fix record updates in job when unable to retrieve
+	    matching defect from the DTS.
+
+	#215365 (Bug #35675)
+	    Correctly handle offline servers during server reset instead of
+	    shutting down the replication engine.
+
+	#215049 (Bug #35639)
+	    The Bugzilla plug-in now reports the correct error the first
+	    time a connection problem occurs.
+
+	#215030 (Bug #35632)
+	    Log file no longer reports sleep times of zero seconds.
+
+	#214540 (Bug #35515)
+	    Added support for 'bulk' type for fields in Perforce Jobspec. This
+	    field is treated as 'text'.
+
+	#209657 (Bug #34854)
+	    Generate a warning if the mapping file contains an invalid
+	    mapping from 'List of changes' to a read-only field in the
+	    DTS.
+
+	#221336 (Bug #36248)
+	    join_DTGStrList will no longer add the separator string to the
+	    end of the resulting string.
+
+--------------------------------------------------------------------------------
+Major new functionality in 2009.1
+
+	#192863 (Bug #24625)
+	    Log level and other replication attributes can be configured using
+	    the "Edit attributes..." button on the Map Editor in the
+	    Configuration tool.
+
+	    Log Levels:
+	        0: Only log errors
+	        1: Log errors and warnings (default)
+	        2: Log errors, warnings, and some information messages
+	        3: Log everything in great detail (Generates a very
+	           large log file. Use only for limited times.)
+
+	    Polling Period: specifies how long the replication engine
+	        sleeps before beginning a new replication cycle. The default is
+	        5 seconds.
+
+	    Connection Reset: specifies how often the server connections are
+	        automatically reset during replication. Do not change unless
+	        directed to by Perforce Support. In general, this setting
+	        minimizes any plug-in-specific memory leakage. For example, the
+	        COM interface for the Quality Center plug-in has some memory
+	        issues which requires this setting. The default is 1000.
+
+	#191281 (Bug #30938)
+	    Added special fields for the current server, user and project. These
+	    are treated as read-only SELECT fields and are intended for use in
+	    segmentation. The names for these fields begin with "DTGConfig-".
+	    If the plug-in supports attributes, they are displayed as read-only
+	    SELECT fields with a prefix of "DTGAttribute-".
+
+	#195378 (Bug #32818)
+	    The Bugzilla plug-in provides a special field called
+	    "Status/Resolution", which can be mirrored in Perforce with an
+	    appropriate SELECT field. Changes to this field are replicated to
+	    both the "Status" and "Resolution" fields in Bugzilla. See the
+	    Bugzilla README.txt for more information.
+
+	#202595 (Bug #34196)
+	    The Bugzilla plug-in provides a special read-only field called
+	    "Product/Component", which can be copied to Perforce as needed
+	    to support segmentation of bugs based on specific components.
+	    See the Bugzilla README.txt for more information.
+
+Minor new functionality in 2009.1
+
+	#195353 (Bug #33241)
+	    The Bugzilla plug-in has changed the format for the Description
+	    (a.k.a. Comments) field. The "-- Comment N: ..." information is now
+	    listed at the end of the text for the comment, instead of being the
+	    first line. Jobs are updated when individual replication occurs.
+	    To force all jobs to be updated, choose "Sync from start".
+
+	#194797 (Bug #32671)
+	    The configuration tool now allows editing of the plug-in type when
+	    the predefined plug-in is not found. This usually only happens if
+	    the plug-in changed its name from one version to the next. More
+	    detailed status information is displayed for this case and when the
+	    server/port or user information is missing.
+
+	#193801,193977 (Bug #33047,33117)
+	    The replication engine logs and exits after an attempt to copy or
+	    mirror special DTS fields that are intended as append-only targets
+	    for Fix Details. Currently, only the Bugzilla plug-in provides such
+	    a field ("Fixes"). The configuration tool enforces this restriction.
+
+	#191784 (Bug #31327,32944)
+	    The Bugzilla plug-in's server trigger now has an option to prepend
+	    a text string to the name of a new job.
+
+	#198078 (Bug #33538)
+	    The replication engine log warnings if DTG_ERROR is
+	    set to 1, 2 or 3 (increasing detail).
+
+	#203166 (Bug#34299)
+	    In Quality Center, "IDispatch error #10208" typically indicates
+	    that the issue is locked due to someone editing it. This will fail
+	    out the associated job. Typically, you only need to remove the
+	    DTG_ERROR field in the associated job to restore replication for
+	    this defect.
+
+Bugs fixed in 2009.1
+
+	#209552 (Bug #34847)
+	    Do not crash if a field in a DTS->SCM mapping does not exist.
+
+	#209552 (Bug #34848)
+	    If either server are unreachable or their plug-ins are missing,
+	    do not perform field level validation within the replication engine.
+
+	#204585 (Bug #34429)
+	    Check the ModUser and ModDate fields for existance and valid type
+	    before beginning replication. If they are either missing or the
+	    incorrect type, log the invalid configuration and exit.
+
+	#204164 (Bug #34189)
+	    The replication engine correctly replicates the "Job:" value to
+	    the defect tracking issue (and vis versa) for newly created Jobs.
+
+	#203331 (Bug #34321)
+	    The replication engine no longer leaks a small amount of memory
+	    when certain error conditions occured.
+
+	#203108 (Bug #34300)
+	    The DTG_ERROR field will be correctly written when the replication
+	    engine fails to save either a job or a defect.
+
+	#201118,201332 (Bug #27000,32582)
+	    Quality Center plug-in ignores the BG_DETECTED_IN_REL, BG_TARGET_REL
+	    BG_TARGET_RCYC, and BG_DETECTED_IN_RCYC fields preventing a
+	    "Type mismatch" error in the COM library.
+
+	#199663 (Bug #33757)
+	    The Bugzilla plug-in on FreeBSD would fail for certain data,
+	    citing the unresolved symbol "floor()". This has been fixed.
+
+	#197934 (Bug #33505)
+	    The p4dtg-test tool no longer crashes when only a space is entered
+	    as input.
+
+	#196971 (Bug #30165)
+	    When attributes are changed, the configuration tool now prompts the
+	    user to recheck the connection.
+
+	#196712 (Bug #33393)
+	    p4dtg-test tool now accepts either "quit" or "exit" to terminate the
+	    application.
+
+	#196495 (Bug #33369)
+	    p4dtg-test tool requires commands to be the only text instead of
+	    just looking for the prefix. For example, "exit" is no longer
+	    processed as the "e" (echo) command.
+
+	#194731 (Bug #33164)
+	    On Windows, the configuration tool now displays version information
+	    when invoked with the -V option.
+
+--------------------------------------------------------------------------------
+Major Changes in Release 2008.2:
+
+	#160128
+	    Support installations of Perforce and Defect Tracking plug-ins
+	    that contain unicode character support. (Bug #22645)
+
+	#151469
+	    Support integration with Bugzilla. (Bug #23074)
+
+	#161580
+	    Replication can be configured to wait instead of exiting when
+	    a server is offline. (Bug #27320).
+
+Changes since Release 2008.2:
+
+	#199977, 199986, 200010
+	    Multiple fix-updates were only having a single one logged in the
+	    Bugzilla comments field after the fix for Bug #33048. (Bug #33869)
+
+	#195695
+	    The Bugzilla plug-in was updating the timestamp of a bug twice
+	    whenever the Fixes field was part of a set of updates. This
+	    resulted in an UPDATE failure. The plug-in will now only update
+	    the timestamp once per set of changes.
+
+	#195451
+	    Replication engine will double check for server connectivity
+	    when a plug-in does not implement the server_offline interface.
+	    This will allow replication to wait when the Perforce server is
+	    offline but the DTS server is online. (Bug #33264)
+
+	#193049, 194225
+	    In the Bugzilla plug-in, mapping a field other than the Perforce
+	    "Fix details" to "Fixes" could cause looping replication. A
+	    mapping of this sort is now a runtime error. (Bug #33048)
+
+	#189241
+	    The Bugzilla plug-in was not updating the Bugzilla bug's
+	    modification time when the only update was a new fix from
+	    Perforce. This would delay replication of that data until
+	    another change was made to the bug. (Bug #32616)
+
+	#189293
+	    Bugzilla plug-in could not be found after upgrading from the
+	    P4DTG Beta. This has been addressed by documenting a simple
+	    workaround in the Release Notes. (Bug #32604)
+
+	#187618, 187669
+	    The Bugzilla plug-in did not properly escape data, which could
+	    result in invalid SQL statements. (Bug #32516)
+
+	#187359, 187401
+	    The Bugzilla plug-in's trigger now treats "" as an unset value
+	    in job fields. These fields are set to "" when a job is created
+	    using P4Win. (Bug #32489)
+
+	#187263
+	    The Bugzilla plug-in's trigger will now give the correct error
+	    message when denying the creation of a new job. (Bug #32477)
+
+	#187255
+	    The Bugzilla plug-in's trigger no longer considers trailing
+	    whitespace in the DTG_* fields in support of client programs
+	    that automatically trim it. (Bug #32475)
+
+	#186659
+	    Accept "" as an unset value for the DTG_DTISSUE and DTG_MAPID
+	    fields. These fields are set to "" when a job is created using
+	    P4Win. (Bug #32383)
+
+	#184234
+	    Correctly deallocate memory in the Bugzilla plug-in to prevent
+	    issues on strict memory usage platforms like Vista. (Bug #32155)
+
+Changes since Beta Release 2008.2:
+
+	#175737
+	    Erroneous "Unable to stop service" message in replication
+	    log has been removed. (Bug #31222)
+
+	#171701
+	    Correctly calculate DataSource in-use reference counts when
+	    mappings are deleted. (Bug #31440)
+
+	#171667
+	    Restrict the number of options required for mapping SELECT
+	    fields that are the basis of segmentation. This change
+	    allows for the mirroring of SELECT fields that have
+	    different numbers of options but are equivalent as a
+	    result of the segmentation restrictions.
+	    (Bug #31168)
+
+Changes in Beta Release 2008.2:
+
+	#165390
+	    For new DTS DataSources, checking connection maintains
+	    current project setting if possible. (Bug #30730)
+
+	#165235
+	    New segments always start with empty assigned lists.
+	    (Bug #30661)
+
+	#165229
+	    Segment editor allows the SELECT field to be changed
+	    when no segments map any of the options for that field.
+	    (Bug #30638)
+
+	#165149
+	    Configuration tool now properly handles the editing of
+	    a segment that had one of its options removed from the
+	    underlying SELECT field. (Bug #30714)
+
+	#165064
+	    DataSource and Map names must be unique regardless of case.
+	    (Bug #30645)
+
+	#165063
+	    The set-MAPNAME.xml file is deleted when the map-MAPNAME.xml
+	    file is deleted using the configuration tool. (Bug #30715)
+
+	#165002
+	    The replication engine no longer crashes when exiting.
+	    (Bug #30602)
+
+	#164960
+	    p4dtg-test no longer crashes when a value is omitted for the
+	    AS (Attribute Set) command. (Bug #30678)
+
+	#164925
+	    Enabled deleting of brand-new data sources that have never been
+	    saved. (Bug #30664)
+
+	#164912
+	    Display the nickname for the server in the segment editor when
+	    the server source is new. (Bug #30656)
+
+	#164904
+	    Corrected typo in error message requiring a valid connection to
+	    the server before allowing segmentation. (Bug #30568)
+
+	#163715
+	    Fix details for FileList can now be added independently from
+	    the FixDescription. (Bug #30447)
+
+Changes since release 2008.1:
+
+	#160411
+	    Correct the set of required fields to only those fields which
+	    are used by the system. (Bug #30184)
+
+	#158674
+	    Keyboard navigation of field lists in the Mapping Editor of the
+	    configuration tool will update the mapping buttons accordingly.
+	    (Bug #29988)
+
+Changes in Release 2008.1:
+
+	#150549
+	    Filter Replication - Enables any DataSource to be segmented using a
+	    specific SELECT field so that a single DataSource can be used in
+	    multiple replication mappings. (Bug #24777)
+
+	#148395
+	    DataSource specific Attributes - Support plug-ins that require
+	    additional information for configuring a DataSource. (Bug #24780)
+
+	#158128
+	    The configuration tool will report failures to write or delete
+	    configuration files to/from the 'config' directory. (Bug #29950)
+
+	#153291
+	    The HP Quality Center plug-in supports user configuration of
+	    the time offset using the Attribute editor. The default value of
+	    30 seconds should be acceptable for almost all instances.
+	    (Bug #29165)
+
+	#158206
+	    The configuration tool checks for write-access to the config,
+	    help, and repl subdirectories on start-up. (Bug #29959)
+
+	#155501
+	    The Select Mapping Editor in the configuration tool will treat
+	    duplicate options for a SELECT field as a single entity.
+	    (Bug #29606)
+
+	#155355
+	    Correctly report malconfigured DataSources. All Perforce sources
+	    require a 'Job:' field, a field containing the last modified by,
+	    and a field containing the last modified date. All DTS sources
+	    require a field containing the issue/defect id and a field
+	    containing the last modified date. (Bug #29570)
+
+	    Replication engine will check for required fields and exit with
+	    an appropriate message if missing. (Bug #29556)
+
+	#154937
+	    The About help page now has navigation links at the bottom of the
+	    page. (Bug #29390)
+
+	#154443
+	    If the machine running the replication runs out of disk space, there
+	    is a chance the setting file may become corrupted or out-of-date.
+	    The configuration tool will report such errors and you can resolve
+	    them by restoring the backup copy of the setting file in the config
+	    directory. The backup ends in '.old'. Alternatively, you can simply
+	    delete the set-MAPNAME.xml file and reset the start date using the
+	    configuration tool. (Bug #29295)
+
+	#154362
+	    Prevent duplicate DataSource and DataMapping names (Bug #29300)
+
+	#157077
+	    The replication log now displays the proper path for files. The
+	    use of '/' and '\' for directory separators has been normalized.
+	    (Bug #29172)
+
+	#149920
+	    The replication engine now reports which server has failed to
+	    return the current date. (Bug #28590)
+
+	#149920
+	    The replication engine reports more information on which server
+	    is failing on a connect request. (Bug #28591)
+
+	#151536
+	    The configuration tool now checks for the correct directory
+	    structure upon startup and report any errors. (Bug #28907)
+
+Changes since Release 2007.1 May 3, 2007:
+	#148124
+	    Support for P4TICKETS. To use tickets, leave the password field
+	    blank for the Perforce Data Source. A valid ticket must be obtained
+	    prior to running the configuration tool - if the ticket expires,
+	    replication stops. After setting the ticket(s), copy the
+	    p4tickets.txt file into the 'C:\Documents and Settings\LocalService'
+	    directory so that the replication server service can find the
+	    ticket file. (Bug #28464)
+
+Changes since Release 2006.2 January 15, 2007:
+
+	#122074
+	    DTS Source Creation requires a Project to be selected before
+	    enabling the "OK" button to save the new source.
+	    (Bug #24481)
+
+	#122074
+	    p4dtg-test rejects calls to Perforce-only extensions for
+	    non-perforce plug-ins.
+	    (Bug #24647)
+
+	#122074
+	    p4dtg-test help text now states that the SD method might require
+	    a connection to a specific project to work correctly. Quality
+	    Center plug-in has this requirement.
+	    (Bug #24648)
+
+	#122074
+	    p4dtg-test help text now states that the DE method requires the
+	    date to be formatted according to the plug-in being tested.
+	    (Bug #24649)
+
+	#122074
+	    Perforce plug-in now puts single-line field values on the
+	    same line as the field name.
+	    (Bug #24652)
+
+	#119397
+	    Configuration tool no longer crashes when connecting to
+	    a non-p4d server using the p4jobs plug-in.
+	    (Bug #24256)
+
+	#119387
+	    Prevent replication engine from being run when the Defect
+	    Tracking Source is not providing a "Last Modified Date"
+	    field.
+	    (Bug #24242)
+
+	#119387
+	    Correct non-enabling of possible select values when all select
+	    value mappings are deleted using UNMAP ALL.
+	    (Bug #24226)
+
+	#118987
+	    Prevent running the replication engine on an empty mapping
+	    description.
+	    (Bug #24206)
+
+	#118866
+	    Correct check for incomplete select mappings to not consider
+	    deleted mappings.
+	    (Bug #24198)
+
+	#118864
+	    Prevent changing of nicknames after they have been established.
+	    (Bug #24200)
+
+	#118864
+	    Prevent deletion of Data Sources that are used in mappings.
+	    (Bug #24194)
+
+	#118755
+	    Prevent invoking replication on a mappings marked for deletion
+	    (Bug #24190)
+
+	#118383
+	    To ensure that all new HP issues are properly replicated,
+	    the Quality Center plug-in subtracts 30 seconds from the timestamp
+	    used used to detect new or changed issues.
+	    (Bug #24153)
+
+	#117382
+	    Enable the Perforce server and the Defect Tracking server to run in
+	    different time zones.
+	    (Bug #23792)
+
+	#117101
+	    Enable the configuration tool to display long project names.
+	    (Bug #23954)
+
+	#117035
+	    P4DTG now supports the following HP date formats:
+
+	    DMY - Day Month Year - dd/mm/yyyy
+	    MDY - Month Day Year - mm/dd/yyyy
+	    YMD - Year Month Day - yyyy/mm/dd
+
+	    24 hr - hh:mm:ss
+	    12 hr - hh:mm:ss AM|PM
+
+	    Other formats are not supported.
+	    (Bug #23916)
+
+	#116366
+	    The replication engine no longer crashes if the Defect Tracking
+	    System returns a NULL value for a defect's LastModifiedDate field.
+	    (Bug #23855)
+
+	#115643
+	    Support running the replication engine using Windows services.
+	    (Bug #23050)

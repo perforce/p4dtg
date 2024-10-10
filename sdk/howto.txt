@@ -1,0 +1,101 @@
+Developing Gateway Plug-ins
+=======================
+Using the SDK included with the Perforce defect tracking gateway, you can
+enable the unification server to replicate to commercial or
+proprietary defect trackers beyond those provided and supported
+by Perforce.
+
+To implement a plugin, you implement a set of required functions
+and compile the code into a DLL or shared object library. The plug-in
+provides defect tracker data to the unification server and adds and updates
+defect tracker issues.
+
+Development environment
+====================
+The SDK includes skeleton and sample C and C++ code.
+
+Key Concepts:
+Data Source
+Project
+Date Mapping
+Fix Details
+
+Coding the required functions
+=======================
+Copy the skeleton or sample code files to a development directory
+and rename them appropriately.  [Need to copy /include files too?]
+
+Code the required functions. Given a defect tracker that provides its
+own fully-featured API, you probably need to implement the following:
+
+MyDTG class:
+
+         - constructor connects to defect tracker and creates a member
+        variable for calls to the defect tracker API
+
+        - destructor disconnects from defect tracker
+
+        - extract_date and format_date: convert strings to/from defect tracker date
+        structures
+
+        - get_server_date: return current date and time from defect tracker.
+
+        - get_name: returns description of defect tracker.
+
+        - get_module_version: returns  version number of your plugin.
+
+        - get_server_version: returns version number of defect tracker.
+
+        - list_projects: returns a list of projects defined  in the defect tracker
+
+        - get_project: connects to a specified project
+
+MyDTGProj class:
+
+        - constructor connects to the project
+
+        - destructor disconnects from the project
+
+        - list_fields: list the defect tracker fields associated with the project
+
+        - list_changed_defects: list issues changed after a specified date and
+        filtered by user for the project
+
+        - get_defect: retrieve data from a specific issue
+
+        - new_defect: create an issue
+
+MyDTGDefect class:
+
+        - constructor  retrieves the issue from the defect tracker
+
+        - get_fields: list the issue's fields and values
+
+        - get_field: retrieves the value of a specified field
+
+        - set_field: set the value of a specified field
+
+        - save: save any changes to the issue
+
+
+Building your plugin
+==============
+Compile the code to create a DLL or shared object library, linking
+with  any required files from your defect tracker API [and anything
+else?]
+
+[Any specific characteristics of the resulting file? Does static 
+linking matter?
+Anything else to say?]
+
+
+Testing your plugin
+==============
+To verify that your plugin is working, you can use the command line tool
+provided with the SDK. Build the tool from the code in the /test directory.
+
+To test your plugin, [do what? I couldn't build it.]
+
+Installing your plugin
+==============
+[What do they need to do?]

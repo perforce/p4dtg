@@ -1,0 +1,82 @@
+What level of integration?
+--------------------------
+- Database only
+- Business logic w/o workflow
+- Business login w/ workflow
+
+You should know how to programatically do the following:
+--------------------------------------------------------
+Convert from and to the date format used by the DTS
+
+Connect to a specific server, and additionally a specific project
+- A "project" is something that has a distinct set of fields or issue
+  identifiers for a set of issues.
+
+Disconnect from a server
+
+Retrieve the version of the server
+
+Retrieve the current time from the server
+
+Retrieve a list of projects contained in a specific server
+	Use one pseudo project if the dts does not support multiple
+
+Retrieve a list of fields associated with a specific project along
+with specifics on type and writability
+- The set of fields and how to map the into DTG is critical. The
+  list must include a field for mod-date. If the list of fields
+  cannot be retrieved from the DTS dynamically, then the plugin
+  should consider using a file containing this information instead
+  of simply hard-coding the information.
+
+Retrieve a list of defects that have changed since a particular
+date and optionally restrict this list to those which were not changed
+by a given user
+
+Retrieve a specific defect
+
+Save changes to a defect
+
+Create a new defect
+
+==============================================
+0) You should already know how to do all the actions described above
+1) Unpack the SDK into a directory
+2) Copy the mydts directory and contents into a new directory.
+   This is the framework from which you will build your plugin.
+3) Edit the various classes and implementations to be specific for you
+   defect tracking system. The following describes most of the editing
+   that you need to perform:
+
+DTG-mod-cpp.cc should typically not need any changes
+
+Jamfile:
+  - Change the "PNAME" definition to the name of your plugin
+
+MyDTG.h:
+  - If you are going to save defect change information in some other
+    manner than using the built in structure, then you will probably
+    need to add to the MyDTGDefect class. Otherwise, this file should
+    typically not need any changes.
+
+MyDTG.cc:
+  - Change MyDTG::MyDTG to appropriately initialize what is needed for
+    your api
+  - Change MyDTG::~MyDTG to appropriate deinitialize what is needed for
+    your api.
+  - Edit extract_date, format_date to conform to your DTS's format
+  - Change MyDTG::get_name to return the simple name for your DTS.
+    This name is saved in the data source to identify which plugin is
+    to be used for that source.
+
+MyDTGDefect.cc:
+  - Edit get_fields, get_field, and set_field to convert to/from whatever 
+    format you are using to cache that information.
+
+MyDTG.h:
+  - Decide and implement how you want to store the fields for specific
+    defects.
+
+MyDTGProj.cc:
+
+

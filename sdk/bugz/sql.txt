@@ -1,0 +1,47 @@
+select profiles.login_name, 
+	longdescs.bug_when, 
+	longdescs.isprivate, 
+	longdescs.already_wrapped, 
+	longdescs.thetext 
+from longdescs, profiles 
+where bug_id = 2 and longdescs.who = profiles.userid 
+order by bug_when;
+
+select products.name as product, 
+	components.name as component, 
+	profiles.login_name as reported_by, 
+	bugs.*
+from bugs, products, components, profiles
+where bugs.bug_id = 2 and 
+	bugs.product_id = products.id and 
+	bugs.reporter = profiles.userid and 
+	bugs.component_id = components.id;
+
+select * from bugs where bug_id = %d;
+
+product: self.product_name_from_id(bug['product_id'])
+        select * from products;
+component: self.component_name_from_id(bug['component_id'])
+        select * from components;
+
+groups: self.bug_groups(bug)
+        -- not sure what this is
+
+longdesc: self.bug_get_longdesc(bug)
+        select * from longdescs where bug_id = %d;
+        -- not clear how this is structured
+        -- perhaps make it readonly?
+
+http://www.ravenbrook.com/project/p4dti/tool/cgi/bugzilla-schema/
+
+Long descriptions
+
+Each bug has a number of comments associated with it. These
+are stored individually in the longdescs table.
+
+They are displayed as the "Description" on the bug form,
+ordered by date and annotated with the user and date. Users
+can add new comments with the "Additional comment" field on
+the bug form.
+INSERT INTO longdescs ( bug_id, who, bug_when, thetext, already_wrapped )
+VALUES ( bid, profile_id, now(), fix, 1 );

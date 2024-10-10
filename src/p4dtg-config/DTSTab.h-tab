@@ -1,0 +1,55 @@
+/*
+ * Copyright 2008 Perforce Software.  All rights reserved.
+ *
+ * This file is part of Perforce - the FAST SCM System.
+ */
+
+#ifndef DTSTAB_HEADER
+#define DTSTAB_HEADER
+
+#include <QApplication>
+#include <QComboBox>
+#include <QTableWidget>
+#include <QTableWidgetItem>
+#include <QPushButton>
+#include <QLabel>
+#include <QLineEdit>
+#include <QWidget>
+
+class DataSource;
+
+class DTSTab : public QWidget
+{
+	Q_OBJECT
+
+    public:
+	DTSTab( QPushButton *save, QWidget *parent = 0 );
+
+    private slots:
+	void listClicked( QTableWidgetItem *item );
+	void editPushed();
+	void newPushed();
+	void deletePushed();
+
+	void displayObject( DataSource *src );
+	void refreshList();
+
+    private:
+	QTableWidget *list;
+	QPushButton *edit_btn;
+	QPushButton *new_btn;
+	QPushButton *delete_btn;
+	QLineEdit *nickname_edit;
+	QLineEdit *dtstype_edit;
+	QLineEdit *server_edit;
+	QLineEdit *user_edit;
+	QLineEdit *password_edit;
+	QLabel *status_edit;
+	QLineEdit *module_edit;
+	QLineEdit *moddate_edit;
+	QLineEdit *moduser_edit;
+
+	QPushButton *save_btn;
+};
+
+#endif

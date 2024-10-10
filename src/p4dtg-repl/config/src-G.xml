@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<DTGConfiguration
+    version="1"
+    updated="2006/06/28 22:16:19 UTC">
+    <DataSource
+        type="SCM"
+        plugin="Perforce Jobs"
+        nickname="G"
+        server="win-gerry:1717"
+        user="gerry"
+        password=""
+        module="Jobs"
+        moddate_field="PerforceModifiedDate"
+        moduser_field="PerforceModifiedBy"
+        admin_user="gerry" />
+</DTGConfiguration>

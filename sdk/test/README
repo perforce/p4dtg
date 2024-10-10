@@ -1,0 +1,77 @@
+FILE LIST:
+==========
+CMakeLists.txt		Cmake build file
+dtgtest.cc		Test tool source
+p4dtg-test.rc           Windows rc/version file
+README			This file
+
+Plugin Test Tool:
+=================
+The tool uses the command line to issue calls to load, use, 
+and unload plugins. The 2-character commands are listed 
+below along with any required arguments:
+
+Library
+        LL path                 - new DTGModule(path)
+        LT                      - DTGmodule::test()
+        LN                      - dt_get_name()
+        LV                      - dt_get_module_version()
+        LC server user pass     - dt_connect(server, user, pass) -> dtID
+        LF                      - delete DTGModule()
+        LE<cr>datestring        - extract_date( datestring )
+                                - datestring: -as specified by the plugin-
+        LI yyyy mm dd hh mm ss  - format_date( date )
+        Q{uit}                  - Quit tool. Exit will also quit tool
+        H{elp}                  - Show this help text
+
+Attribute - Optional plugin interfaces
+        AL                      - list_attrs()
+        AV name value           - validate_attr( name, value )
+
+        The following are only effective prior to the LC command.
+        AS name value           - set attribute
+        AD name                 - delete attribute
+
+Server (these require dtID to be set before use)
+        SF                      - dt_free(dtID) Unsets dtID
+        SV                      - dt_get_server_version(dtID)
+        SW                      - dt_get_server_warnings(dtID)
+        SM                      - dt_get_message(dtID)
+        SL                      - dt_list_projects(dtID)
+        SU                      - dt_accept_utf8(dtID)
+        SO                      - dt_server_offline(dtID)
+        SD                      - dt_get_server_date(dtID)
+                                  May require project connection
+        SP project              - dt_get_project(dtID, project) -> projID
+
+Project (these require projID to be set before use)
+        PF                      - proj_free(projID) Unsets projID
+        PS                      - proj_list_fields(projID)
+        PL n d datef userf user - proj_list_changed_defects(projID, ...)
+                n:      max rows to return
+                d:      yyyy/mm/dd/hh/mm/ss modified since date
+                datef:  ModifiedDate field name
+                userf:  ModifiedBy field name
+                user:   Exclude user
+        PD defect               - proj_get_defect(projID, defect) -> defectID
+        PN                      - proj_new_defect(projID) -> defectID
+        PR f1 f2 f3             - proj_referenced_fields(projID)
+	
+	PI<cr>			- proj_segment_filters(projID, ...)
+	Field1 Opt1 Opt2 ...	  Each field/options set is on its own line
+	Field2 Opt1 Opt2 ...
+	.			  Terminate with a solo period
+
+	The following are specific to the Perforce plugin:
+        PQ n qual - proj_find_defects(projID, ...)
+                n:      max rows to return
+                qual:   qualication to use on query
+        PC defect               - proj_list_fixes(projID, defect)
+        PA fix                  - proj_describe_fix(projID, fix)
+
+Defect (these require defectID to be set before use)
+        DF                      - defect_free(defectID) Unsets defectID
+        DL                      - defect_get_fields(defectID)
+        DW field value          - defect_set_field(defectID, field,value)
+        DR field                - defect_get_field(defectID, field)
+        DS                      - defect_save(defectID)

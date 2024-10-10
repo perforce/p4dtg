@@ -1,0 +1,68 @@
+EXAMPLE DEFECT TRACKING SYSTEM INTEGRATION WITH A MySQL DATABASE
+================================================================================
+This is the source for an example plugin which provides the required functional
+interfaces for a generic defect tracking system required by the Perforce Defect
+Tracking Gateway. This should not be used in production.
+
+Note: To link this example plugin, you will need to download the MySQL
+5 library for your platform.
+
+DTG-mod-jobmirror.cc	C++ implementation of the required interface
+			This file should pretty much be used as is
+CMakeLists.txt			Cmake build definition file
+MyDTG.cc		C++ implementation of the class encapsulating 
+			the base Defect Tracking System
+MyDTGDefect.cc		C++ implementation of the class encapsulating
+			specific 'Defects'
+MyDTG.h			C++ Class definition file for the MyDTG, MyDTGProj, 
+			MyDTGDefect classes. Add additional attributes and
+			methods as needed by the plugin have been added
+MyDTGProj.cc		C++ Class definition file for the MyDTGProj class
+			encapsulating specific 'Projects' within a defect
+			tracking system installation.
+MyDTS.cc		C++ implementation of the MyDTS class
+MyDTS.h			C++ class encapsulating the defect tracking system's
+			api to provide the information necessary for the
+			plugin. 
+import.pl		P4Perl program to create MySQL schema and import jobs.
+README			This file
+
+This plugin supports bidirectional replication of jobs between a Perforce
+server and a MySQL database.  To initialize the database, run the "import.pl"
+script.  Read the comments at the head of the script for specifics, but
+it basically does a few things for you:
+
+  - Read the server jobspec and
+    - Create a table that holds "select" field values.
+    - Create a table that maps the field name and types.
+    - Create a table for jobs (one column per field.)
+
+  - Create a dummy job called 'new', which the plugin uses.
+
+  - Create SQL triggers on UPDATE/INSERT that store modification of jobs
+    from the MySQL side (so replication picks them up.)
+
+  - Optionally convert the output from "p4 -ztag jobs" from your Perforce server
+    into the corresponding SQL INSERT statements that will populate the MySQL
+    database with jobs.  This is optional, as the plugin will do it for you if
+    you don't do this.
+
+Because the plugin/DTG consider the SQL side of the replication to be the
+DTS, it needs some read-only variables ( "ModBy", "ModDate", "Job" ),
+which means that the plugin can't directly have a one to one mapping of names
+between Perforce and SQL.  To get around this, we create "_job", "_ModDate"
+and "_ModBy", and use the SQL trigger to mirror the real names into
+those variables.   We then assign the underscored variables as the DTS keys.
+These variables are defined in the P4D jobspec.  If you don't use these
+exact names, you can customize them via variables defined at the top of
+the import script.
+
+Notes about the plugin:
+
+- Does not handle P4D jobspec changes - you must either re-import the data
+  or alter the MySQL table definitions manually.
+- Must not have P4D jobspec _moddate/_modby/_job fields.
+- When a job is created from the Perforce side and replicated to the MySQL
+  server, it will immediately be modified again on the Perforce side by
+  the replicator in order to add the DTG_DTISSUE/DTG_MAPID fields.  The
+  same goes for adding fixes (the replicator immediately updates DTG_FIXES.)

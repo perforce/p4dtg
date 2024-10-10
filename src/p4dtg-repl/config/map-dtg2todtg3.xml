@@ -1,0 +1,451 @@
+<?xml version="1.0" ?>
+<DTGConfiguration
+    version="1"
+    updated="2006/07/08 23:09:49 UTC">
+    <DataMapping
+        id="dtg2todtg3"
+        scm_id="dtg3"
+        dts_id="dtg2"
+        mirror_conflicts="ERROR">
+        <DtsToScmRules>
+            <CopyRule
+                scm_field="Categories"
+                dts_field="Categories"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="Description"
+                dts_field="Description"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="Customers"
+                dts_field="Customers"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="CallNumbers"
+                dts_field="CallNumbers"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="FixVerifiedBy"
+                dts_field="FixVerifiedBy"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="Support"
+                    value2="Support" />
+                <CopyMap
+                    value1="UI"
+                    value2="UI" />
+                <CopyMap
+                    value1="BuildRelease"
+                    value2="BuildRelease" />
+                <CopyMap
+                    value1="QA"
+                    value2="QA" />
+                <CopyMap
+                    value1="(na)"
+                    value2="(na)" />
+            </CopyRule>
+            <CopyRule
+                scm_field="3rdPartyJob"
+                dts_field="3rdPartyJob"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="CommitRelease"
+                dts_field="CommitRelease"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="ReportedBy"
+                dts_field="ReportedBy"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="OwnedBy"
+                dts_field="OwnedBy"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="Release"
+                dts_field="Release"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="unknown"
+                    value2="unknown" />
+                <CopyMap
+                    value1="97.2"
+                    value2="97.2" />
+                <CopyMap
+                    value1="97.3"
+                    value2="97.3" />
+                <CopyMap
+                    value1="98.1"
+                    value2="98.1" />
+                <CopyMap
+                    value1="98.2"
+                    value2="98.2" />
+                <CopyMap
+                    value1="99.1"
+                    value2="99.1" />
+                <CopyMap
+                    value1="99.2"
+                    value2="99.2" />
+                <CopyMap
+                    value1="2000.1"
+                    value2="2000.1" />
+                <CopyMap
+                    value1="2000.2"
+                    value2="2000.2" />
+                <CopyMap
+                    value1="2001.1"
+                    value2="2001.1" />
+                <CopyMap
+                    value1="2001.2"
+                    value2="2001.2" />
+                <CopyMap
+                    value1="2002.1"
+                    value2="2002.1" />
+                <CopyMap
+                    value1="2002.2"
+                    value2="2002.2" />
+                <CopyMap
+                    value1="2003.1"
+                    value2="2003.1" />
+                <CopyMap
+                    value1="2003.2"
+                    value2="2003.2" />
+                <CopyMap
+                    value1="2004.1"
+                    value2="2004.1" />
+                <CopyMap
+                    value1="2004.2"
+                    value2="2004.2" />
+                <CopyMap
+                    value1="2005.1"
+                    value2="2005.1" />
+                <CopyMap
+                    value1="2005.2"
+                    value2="2005.2" />
+                <CopyMap
+                    value1="2006.1"
+                    value2="2006.1" />
+                <CopyMap
+                    value1="2006.2"
+                    value2="2006.2" />
+                <CopyMap
+                    value1="main"
+                    value2="main" />
+                <CopyMap
+                    value1="none"
+                    value2="none" />
+                <CopyMap
+                    value1="all"
+                    value2="all" />
+            </CopyRule>
+            <CopyRule
+                scm_field="Dependency"
+                dts_field="Dependency"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="Subsystem"
+                dts_field="Subsystem"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="misc"
+                    value2="misc" />
+                <CopyMap
+                    value1="---integrations---retired---dead---"
+                    value2="---integrations---retired---dead---" />
+                <CopyMap
+                    value1="webcal"
+                    value2="webcal" />
+                <CopyMap
+                    value1="tools"
+                    value2="tools" />
+                <CopyMap
+                    value1="kb"
+                    value2="kb" />
+                <CopyMap
+                    value1="website"
+                    value2="website" />
+                <CopyMap
+                    value1="syrup"
+                    value2="syrup" />
+                <CopyMap
+                    value1="marmite"
+                    value2="marmite" />
+                <CopyMap
+                    value1="ketchup"
+                    value2="ketchup" />
+                <CopyMap
+                    value1="calltrack"
+                    value2="calltrack" />
+                <CopyMap
+                    value1="---internals---"
+                    value2="---internals---" />
+                <CopyMap
+                    value1="technote"
+                    value2="technote" />
+                <CopyMap
+                    value1="p4help"
+                    value2="p4help" />
+                <CopyMap
+                    value1="dochelp"
+                    value2="dochelp" />
+                <CopyMap
+                    value1="doc"
+                    value2="doc" />
+                <CopyMap
+                    value1="---documentation---"
+                    value2="---documentation---" />
+                <CopyMap
+                    value1="newproduct"
+                    value2="newproduct" />
+                <CopyMap
+                    value1="sampledepot"
+                    value2="sampledepot" />
+                <CopyMap
+                    value1="webkeeper"
+                    value2="webkeeper" />
+                <CopyMap
+                    value1="perfmerge"
+                    value2="perfmerge" />
+                <CopyMap
+                    value1="jam"
+                    value2="jam" />
+                <CopyMap
+                    value1="reviewdaemon"
+                    value2="reviewdaemon" />
+                <CopyMap
+                    value1="training"
+                    value2="training" />
+                <CopyMap
+                    value1="nt"
+                    value2="nt" />
+                <CopyMap
+                    value1="installer"
+                    value2="installer" />
+                <CopyMap
+                    value1="converter"
+                    value2="converter" />
+                <CopyMap
+                    value1="build"
+                    value2="build" />
+                <CopyMap
+                    value1="build-port"
+                    value2="build-port" />
+                <CopyMap
+                    value1="vcp"
+                    value2="vcp" />
+                <CopyMap
+                    value1="p4wsad"
+                    value2="p4wsad" />
+                <CopyMap
+                    value1="p4winmerge"
+                    value2="p4winmerge" />
+                <CopyMap
+                    value1="p4win"
+                    value2="p4win" />
+                <CopyMap
+                    value1="p4web"
+                    value2="p4web" />
+                <CopyMap
+                    value1="p4v-timelapse"
+                    value2="p4v-timelapse" />
+                <CopyMap
+                    value1="p4v-revgraph"
+                    value2="p4v-revgraph" />
+                <CopyMap
+                    value1="p4v-admin"
+                    value2="p4v-admin" />
+                <CopyMap
+                    value1="p4v-app"
+                    value2="p4v-app" />
+                <CopyMap
+                    value1="p4thumb"
+                    value2="p4thumb" />
+                <CopyMap
+                    value1="p4sql"
+                    value2="p4sql" />
+                <CopyMap
+                    value1="p4sccnet"
+                    value2="p4sccnet" />
+                <CopyMap
+                    value1="p4ruby"
+                    value2="p4ruby" />
+                <CopyMap
+                    value1="p4p"
+                    value2="p4p" />
+                <CopyMap
+                    value1="p4merge"
+                    value2="p4merge" />
+                <CopyMap
+                    value1="p4gt"
+                    value2="p4gt" />
+                <CopyMap
+                    value1="p4ftp"
+                    value2="p4ftp" />
+                <CopyMap
+                    value1="p4foroffice"
+                    value2="p4foroffice" />
+                <CopyMap
+                    value1="p4exp"
+                    value2="p4exp" />
+                <CopyMap
+                    value1="p4dti"
+                    value2="p4dti" />
+                <CopyMap
+                    value1="p4dtg"
+                    value2="p4dtg" />
+                <CopyMap
+                    value1="p4diff"
+                    value2="p4diff" />
+                <CopyMap
+                    value1="p4cw"
+                    value2="p4cw" />
+                <CopyMap
+                    value1="p4api"
+                    value2="p4api" />
+                <CopyMap
+                    value1="p4"
+                    value2="p4" />
+                <CopyMap
+                    value1="---products---"
+                    value2="---products---" />
+                <CopyMap
+                    value1="p4web"
+                    value2="p4web" />
+                <CopyMap
+                    value1="p4sccnet"
+                    value2="p4sccnet" />
+                <CopyMap
+                    value1="p4p"
+                    value2="p4p" />
+                <CopyMap
+                    value1="p4v-app"
+                    value2="p4v-app" />
+                <CopyMap
+                    value1="p4"
+                    value2="p4" />
+                <CopyMap
+                    value1="---most_used---"
+                    value2="---most_used---" />
+            </CopyRule>
+            <CopyRule
+                scm_field="Priority"
+                dts_field="Priority"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="undefined"
+                    value2="undefined" />
+                <CopyMap
+                    value1="low"
+                    value2="low" />
+                <CopyMap
+                    value1="medium"
+                    value2="medium" />
+                <CopyMap
+                    value1="high"
+                    value2="high" />
+                <CopyMap
+                    value1="99"
+                    value2="99" />
+                <CopyMap
+                    value1="88"
+                    value2="88" />
+                <CopyMap
+                    value1="30"
+                    value2="30" />
+                <CopyMap
+                    value1="20"
+                    value2="20" />
+                <CopyMap
+                    value1="10"
+                    value2="10" />
+                <CopyMap
+                    value1="00"
+                    value2="00" />
+            </CopyRule>
+            <CopyRule
+                scm_field="Severity"
+                dts_field="Severity"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="C"
+                    value2="C" />
+                <CopyMap
+                    value1="B"
+                    value2="B" />
+                <CopyMap
+                    value1="A"
+                    value2="A" />
+            </CopyRule>
+            <CopyRule
+                scm_field="Type"
+                dts_field="Type"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="todo"
+                    value2="todo" />
+                <CopyMap
+                    value1="integration"
+                    value2="integration" />
+                <CopyMap
+                    value1="build"
+                    value2="port" />
+                <CopyMap
+                    value1="port"
+                    value2="build" />
+                <CopyMap
+                    value1="problem"
+                    value2="problem" />
+                <CopyMap
+                    value1="SIR"
+                    value2="SIR" />
+                <CopyMap
+                    value1="BUG"
+                    value2="BUG" />
+            </CopyRule>
+            <CopyRule
+                scm_field="Status"
+                dts_field="Status"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="obsolete"
+                    value2="obsolete" />
+                <CopyMap
+                    value1="duplicate"
+                    value2="duplicate" />
+                <CopyMap
+                    value1="suspended"
+                    value2="suspended" />
+                <CopyMap
+                    value1="closed"
+                    value2="closed" />
+                <CopyMap
+                    value1="punted"
+                    value2="punted" />
+                <CopyMap
+                    value1="inprogress"
+                    value2="inprogress" />
+                <CopyMap
+                    value1="triaged"
+                    value2="triaged" />
+                <CopyMap
+                    value1="open"
+                    value2="open" />
+            </CopyRule>
+        </DtsToScmRules>
+    </DataMapping>
+</DTGConfiguration>

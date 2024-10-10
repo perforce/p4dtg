@@ -1,0 +1,24 @@
+GENERIC DEFECT TRACKING SYSTEM INTEGRATION BASED ON C++
+=======================================================
+This is the source for a plugin which provides the required functional
+interfaces for a generic defect tracking system required by the
+Perforce Defect Tracking Gateway.
+
+DTG-mod-cpp.cc		C++ implementation of the required interface
+			This file should pretty much be used as is
+CMakeLists.txt		Cmake build definition file
+MyDTG.cc		C++ implementation of the class encapsulating 
+			the base Defect Tracking System
+MyDTGDefect.cc		C++ implementation of the class encapsulating
+			specific 'Defects'
+MyDTG.h			C++ Class definition file for the MyDTG, MyDTGProj, 
+			MyDTGDefect classes. Add additional attributes and
+			methods as needed by the plugin have been added
+MyDTGProj.cc		C++ Class definition file for the MyDTGProj class
+			encapsulating specific 'Projects' within a defect
+			tracking system installation.
+MyDTS.cc		C++ implementation of the MyDTS class
+MyDTS.h			C++ class encapsulating the defect tracking system's
+			api to provide the information necessary for the
+			plugin. 
+README			This file

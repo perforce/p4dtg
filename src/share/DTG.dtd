@@ -1,0 +1,40 @@
+xml version="1.0"?>
+<!DOCTYPE DTGConfiguration [
+<!ELEMENT DTGConfiguration (DataSource*,DataMapping*)>
+	<!ATTLIST DTGConfiguration version CDATA #REQUIRED>
+	<!ATTLIST DTGConfiguration updated CDATA #REQUIRED>
+<!ELEMENT DataSource (NewRule*)>
+	<!ATTLIST DataSource id CDATA #REQUIRED>
+	<!ATTLIST DataSource type (SCM|DTS) #REQUIRED>
+	<!ATTLIST DataSource nickname CDATA #IMPLIED>
+	<!ATTLIST DataSource server CDATA #REQUIRED>
+	<!ATTLIST DataSource user CDATA #IMPLIED>
+	<!ATTLIST DataSource password CDATA #IMPLIED>
+	<!ATTLIST DataSource project CDATA #REQUIRED>
+	<!ATTLIST DataSource moddate_field CDATA #REQUIRED>
+	<!ATTLIST DataSource moduser_field CDATA #REQUIRED>
+<!ELEMENT DataMapping (FixRule*,MirrorRules?,ScmToDtsRules?,DtsToScmRules?)>
+	<!ATTLIST DataMapping scm_id CDATA #REQUIRED>
+	<!ATTLIST DataMapping dts_id CDATA #REQUIRED>
+	<!ATTLIST DataMapping mirror_conflicts (SCM|DTS|NEWER|ERROR) #REQUIRED>
+	<!ELEMENT FixRule ANY   >
+		<!ATTLIST FixRule dts_field CDATA #REQUIRED>
+		<!ATTLIST FixRule copy_type (REPLACE|APPEND) #REQUIRED>
+		<!ATTLIST FixRule file_list (0|1) #REQUIRED>
+		<!ATTLIST FixRule change_number (0|1) #REQUIRED>
+		<!ATTLIST FixRule description (0|1) #REQUIRED>
+		<!ATTLIST FixRule fixed_by (0|1) #REQUIRED>
+		<!ATTLIST FixRule fixed_date (0|1) #REQUIRED>
+	<!ELEMENT SCMFilter (FilterRule+)>
+	<!ELEMENT DTSFilter (FilterRule+)>
+	<!ELEMENT MirrorRules (CopyRule+)>
+	<!ELEMENT ScmToDtsRules (CopyRule+)>
+	<!ELEMENT DtsToScmRules (CopyRule+)>
+		<!ELEMENT CopyRule (CopyMap*)>
+			<!ATTLIST CopyRule scm_field CDATA #REQUIRED>
+			<!ATTLIST CopyRule dts_field CDATA #REQUIRED>
+			<!ATTLIST CopyRule copy_type (WORD|LINE|ALL|MAP) #REQUIRED>
+			<!ELEMENT CopyMap ANY   >
+				<!ATTLIST CopyMap value1 CDATA #REQUIRED>
+				<!ATTLIST CopyMap value2 CDATA #REQUIRED>
+]>

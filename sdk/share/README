@@ -1,0 +1,16 @@
+Utility Classes and Implementatons:
+===================================
+Review the utility functions in 'dtg-utils.h' for use in the plugin
+implementation.
+
+DTGModule.cc	: C++ Implmentation of the DTGModule which encapsulates
+		  the loading of a plugin. Used by the plugin test tool.
+DTGModule.h	: C++ Class which encapsulates loading and using a plugin
+		  Used by the plugin test tool.
+dtg-utils.c	: C Implementation of the utility functions for the
+		  data structures passed between the plugin and the Perforce
+		  Defect Tracking Gateway system
+dtg-utils.h	: Declarations of the utility functions for manipulating
+		  the data structures passed between the plugin and
+		  the Perforce Defect Tracking Gateway
+README		: This file

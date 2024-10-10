@@ -1,0 +1,24 @@
+E
+LL ../cpp-src/DTG-mod-cpp.so
+LT
+LN
+LV
+LC *server* *userid* *passwd*
+SV
+SL
+SP *project*
+PS
+PL 4 2000/01/01/00/00/00 ModifiedDate ModifiedBy *user*
+PD *defect*
+DL
+DW *name* *value*
+DR *name*
+DS
+DF
+PN
+DS
+DF
+PF
+SF
+LF
+Q

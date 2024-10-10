@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<DTGGateway
+    version="1"
+    updated="2006/07/08 23:12:46 UTC">
+    <DTGSettings
+        id="dtg2todtg3"
+        force="0">
+        <LastUpdate>
+            <Date
+                year="2006"
+                month="8"
+                day="8"
+                hour="23"
+                minute="12"
+                second="46" />
+        </LastUpdate>
+        <StartingDate>
+            <Date
+                year="2006"
+                month="7"
+                day="31"
+                hour="0"
+                minute="0"
+                second="0" />
+        </StartingDate>
+    </DTGSettings>
+</DTGGateway>

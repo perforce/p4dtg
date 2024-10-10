@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Config>
+  <JiraHandling>
+      <UserStyle>name,email,emailshort,displayname</UserStyle>
+  </JiraHandling>
+  <CustomFields>
+
+    <CustomField name="P4Summary" type="LINE" access="RW" />
+    <CustomField name="Bongos" type="SELECT" access="RO">
+      <Option value="small" />
+      <Option value="medium" />
+      <Option value="large" />
+    </CustomField>
+
+    /////////////////////////////////////////// -->
+
+  </CustomFields>
+
+  <Workflows>
+    <!--/////////////////////////////////////////// -->
+    <!--/////// Insert Custom Workflows /////////// -->
+    <!--/////////////////////////////////////////// -->
+    <!--/////// BEGIN Custom Workflow ///////////// -->
+
+
+
+    <!--/////// END Custom Workflow /////////////// -->
+
+    <!--************************************************************ -->
+    <!--* Delete the default JIRA workflow if you are not using it * -->
+    <!--************************************************************ -->
+
+    <!--/////////////////////////////////////////// -->
+    <!--/////// The Default JIRA Workflow ///////// -->
+    <!--/////////////////////////////////////////// -->
+    <Workflow name="jira">
+
+      <ResolutionTransitions>
+        <ResolutionTransition name="Resolve Issue" />
+        <ResolutionTransition name="Close Issue" />
+      </ResolutionTransitions>
+
+      <Step name="Open" linkedStatus="Open">
+        <Transition name="Start Progress" destinationStep="In Progress" />
+        <Transition name="Resolve Issue" destinationStep="Resolved" />
+        <Transition name="Close Issue" destinationStep="Closed" />
+      </Step>
+
+      <Step name="In Progress" linkedStatus="In Progress">
+        <Transition name="Stop Progress" destinationStep="Open" />
+        <Transition name="Resolve Issue" destinationStep="Resolved" />
+        <Transition name="Close Issue" destinationStep="Closed" />
+      </Step>
+
+      <Step name="Resolved" linkedStatus="Resolved">
+        <Transition name="Close Issue" destinationStep="Closed" />
+        <Transition name="Reopen Issue" destinationStep="Reopened" />
+      </Step>
+
+      <Step name="Reopened" linkedStatus="Reopened">
+        <Transition name="Resolve Issue" destinationStep="Resolved" />
+        <Transition name="Close Issue" destinationStep="Closed" />
+        <Transition name="Start Progress" destinationStep="In Progress" />
+      </Step>
+
+      <Step name="Closed" linkedStatus="Closed">
+        <Transition name="Reopen Issue" destinationStep="Reopened" />
+      </Step>
+
+    </Workflow>
+
+  </Workflows>
+</Config>

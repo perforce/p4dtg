@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<DTGGateway
+    version="1"
+    updated="2006/11/28 21:26:08 UTC">
+    <DTGSettings
+        id="SampleMapping"
+        force="1">
+        <LastUpdate>
+            <Date
+                year="2006"
+                month="12"
+                day="28"
+                hour="11"
+                minute="2"
+                second="22" />
+        </LastUpdate>
+        <StartingDate>
+            <Date
+                year="1980"
+                month="7"
+                day="21"
+                hour="0"
+                minute="0"
+                second="0" />
+        </StartingDate>
+    </DTGSettings>
+</DTGGateway>

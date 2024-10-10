@@ -1,0 +1,22 @@
+Perforce Defect Tracking Gateway Plug-in Development Kit:
+
+mydts/		- Contains framework code for creating a new plug-in
+
+bugz/		- Contains example code for a Bugzilla based plug-in
+p4jobdt/	- Contains example C++ plug-in for the P4 Jobs Defect System
+jira-rest/	- Contains example C++/Java plug-in for JIRA-REST. This is the
+		  recommended method for integrating with the JIRA REST API.
+tcpdts/		- Contains example C++ plug-in for a TCP-based XML request
+		  response integration. The jira plug-in was built using
+		  this as the initial starting framework. We recommend using
+		  the jira plug-in as the basis if possible.
+
+include/	- Contains the interface definition for the plug-ins
+share/		- Contains utility classes used by the plug-in test tool
+		  and for the manipulation of the data structures passed
+		  between the plug-in and the Perforce Defect Tracking
+		  Gateway system
+
+test/		- Contains command line plug-in test tool
+
+README		- This file

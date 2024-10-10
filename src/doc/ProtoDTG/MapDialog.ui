@@ -1,0 +1,1394 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>MapDialog</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>MapDialog</cstring>
+    </property>
+    <property name="enabled">
+        <bool>true</bool>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>783</width>
+            <height>815</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Perforce Defect Tracking Gateway Configuration Editor</string>
+    </property>
+    <property name="sizeGripEnabled">
+        <bool>true</bool>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>11</number>
+        </property>
+        <property name="spacing">
+            <number>6</number>
+        </property>
+        <widget class="QTabWidget">
+            <property name="name">
+                <cstring>mapTabWidget</cstring>
+            </property>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>TabPage</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Edit P4-DTS Mapping</string>
+                </attribute>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>390</x>
+                            <y>20</y>
+                            <width>169</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Select fields to be displayed:</string>
+                    </property>
+                </widget>
+                <widget class="QComboBox">
+                    <item>
+                        <property name="text">
+                            <string>DTS fields copied to P4 (or mirrored)</string>
+                        </property>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>P4 fields copied to DTS (or mirrored)</string>
+                        </property>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>P4 fix Information copied to DTS</string>
+                        </property>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>All mapped fields</string>
+                        </property>
+                    </item>
+                    <property name="name">
+                        <cstring>comboBox2</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>390</x>
+                            <y>40</y>
+                            <width>360</width>
+                            <height>27</height>
+                        </rect>
+                    </property>
+                    <property name="currentItem">
+                        <number>3</number>
+                    </property>
+                </widget>
+                <widget class="QGroupBox">
+                    <property name="name">
+                        <cstring>groupBox1</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>40</y>
+                            <width>340</width>
+                            <height>280</height>
+                        </rect>
+                    </property>
+                    <property name="title">
+                        <string>P4 Fields (click to map)</string>
+                    </property>
+                    <widget class="QListBox">
+                        <item>
+                            <property name="text">
+                                <string>User</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>Job</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>Description</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>Date</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>* List of Change Numbers</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>* Fix Details (append)</string>
+                            </property>
+                        </item>
+                        <property name="name">
+                            <cstring>listBox3</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>20</y>
+                                <width>320</width>
+                                <height>250</height>
+                            </rect>
+                        </property>
+                        <property name="frameShape">
+                            <enum>NoFrame</enum>
+                        </property>
+                        <property name="frameShadow">
+                            <enum>Raised</enum>
+                        </property>
+                    </widget>
+                </widget>
+                <widget class="QGroupBox">
+                    <property name="name">
+                        <cstring>groupBox1_2</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>380</y>
+                            <width>340</width>
+                            <height>280</height>
+                        </rect>
+                    </property>
+                    <property name="title">
+                        <string>DTS Fields (click to map)</string>
+                    </property>
+                    <widget class="QListBox">
+                        <item>
+                            <property name="text">
+                                <string>User</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>Job</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>Description</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>Date</string>
+                            </property>
+                        </item>
+                        <property name="name">
+                            <cstring>listBox3_2</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>20</y>
+                                <width>320</width>
+                                <height>250</height>
+                            </rect>
+                        </property>
+                        <property name="frameShape">
+                            <enum>NoFrame</enum>
+                        </property>
+                        <property name="frameShadow">
+                            <enum>Raised</enum>
+                        </property>
+                    </widget>
+                </widget>
+                <widget class="QListView">
+                    <column>
+                        <property name="text">
+                            <string>Specific Fields Mapped (click to unmap or modify)</string>
+                        </property>
+                        <property name="clickable">
+                            <bool>true</bool>
+                        </property>
+                        <property name="resizable">
+                            <bool>false</bool>
+                        </property>
+                    </column>
+                <item>
+                    <property name="text">
+                        <string>Fix Information to DTS</string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap></pixmap>
+                    </property>
+                    <item>
+                        <property name="text">
+                            <string>ListOfChangeNumbers</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-itf</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-itf</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; word-itf (truncate)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>Fix Details</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-afi (append)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                            <item>
+                                <property name="text">
+                                    <string>include Description</string>
+                                </property>
+                                <property name="pixmap">
+                                    <pixmap></pixmap>
+                                </property>
+                            </item>
+                            <item>
+                                <property name="text">
+                                    <string>include ChangeNumber</string>
+                                </property>
+                                <property name="pixmap">
+                                    <pixmap></pixmap>
+                                </property>
+                            </item>
+                            <item>
+                                <property name="text">
+                                    <string>include ChangedBy</string>
+                                </property>
+                                <property name="pixmap">
+                                    <pixmap></pixmap>
+                                </property>
+                            </item>
+                            <item>
+                                <property name="text">
+                                    <string>include ChangeDate</string>
+                                </property>
+                                <property name="pixmap">
+                                    <pixmap></pixmap>
+                                </property>
+                            </item>
+                            <item>
+                                <property name="text">
+                                    <string>include FileList</string>
+                                </property>
+                                <property name="pixmap">
+                                    <pixmap></pixmap>
+                                </property>
+                            </item>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-af1i (append)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                            <item>
+                                <property name="text">
+                                    <string>include Description</string>
+                                </property>
+                                <property name="pixmap">
+                                    <pixmap></pixmap>
+                                </property>
+                            </item>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-af2i (append)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                            <item>
+                                <property name="text">
+                                    <string>include ChangeNumber</string>
+                                </property>
+                                <property name="pixmap">
+                                    <pixmap></pixmap>
+                                </property>
+                            </item>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-af3i (append)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                            <item>
+                                <property name="text">
+                                    <string>include ChangedBy</string>
+                                </property>
+                                <property name="pixmap">
+                                    <pixmap></pixmap>
+                                </property>
+                            </item>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-af4i (append)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                            <item>
+                                <property name="text">
+                                    <string>include ChangeDate</string>
+                                </property>
+                                <property name="pixmap">
+                                    <pixmap></pixmap>
+                                </property>
+                            </item>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-af5i (append)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                            <item>
+                                <property name="text">
+                                    <string>include FileList</string>
+                                </property>
+                                <property name="pixmap">
+                                    <pixmap></pixmap>
+                                </property>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+                <item>
+                    <property name="text">
+                        <string>P4 fields copied to DTS (or mirrored)</string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap></pixmap>
+                    </property>
+                    <item>
+                        <property name="text">
+                            <string>date-o</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; date-id</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-id</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-id</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>line-o</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-il</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-il</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; word-il (truncate)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>select-m-o</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; select-n-is (map)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>select-n-o</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-is</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; select-m-is (map)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-is</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; word-is</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>text-o</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-it</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-it</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; word-it (truncate)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>word-o</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-iw</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-iw</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; word-iw</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>date-2 &lt;-&gt; date-2</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; date-i2d</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-i2d</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-i2d</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>line-2 &lt;-&gt; line-2</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-i2l</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-i2l</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; word-i2l (truncate)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>text-2 &lt;-&gt; text2</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-i2t (truncate)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-i2t</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; word-i2t (truncate)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>select-n-2 &lt;-&gt; select-n-2</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-i2s</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; select-m-i2s (map)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-i2s</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; word-i2s</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>select-m-2 &lt;-&gt; select-m-2</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; select-n-i2s (map)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>word-2 &lt;-&gt; word-2</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-i2w</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-i2w</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; word-i2w</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                </item>
+                <item>
+                    <property name="text">
+                        <string>DTS fields copied to P4 (or mirrored)</string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap></pixmap>
+                    </property>
+                    <item>
+                        <property name="text">
+                            <string>date-o</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; date-id</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-id</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-id</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>line-o</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-il</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-il</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; word-il (truncate)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>select-m-o</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; select-n-is (map)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>select-n-o</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-is</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; select-m-is (map)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-is</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; word-is</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>text-o</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-it</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-it</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; word-it (truncate)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>word-o</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-iw</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-iw</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; word-iw</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>date-2 &lt;-&gt; date-2</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; date-i2d</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-i2d</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-i2d</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>line-2 &lt;-&gt; line-2</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-i2l</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-i2l</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; word-i2l (truncate)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>text-2 &lt;-&gt; text-2</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-i2t (truncate)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-i2t</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; word-i2t (truncate)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>select-n-2 &lt;-&gt; select-n-2</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-i2s</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; select-m-i2s (map)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-i2s</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; word-i2s</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>select-m-2 &lt;-&gt; select-m-2 (map)</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; select-n-i2s (map)</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>word-2 &lt;-&gt; word-2</string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap></pixmap>
+                        </property>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; line-i2w</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; text-i2w</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>-&gt; word-i2w</string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap></pixmap>
+                            </property>
+                        </item>
+                    </item>
+                </item>
+                    <property name="name">
+                        <cstring>p4MapTree_4</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>390</x>
+                            <y>80</y>
+                            <width>360</width>
+                            <height>580</height>
+                        </rect>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>pushButton4_2_2_2</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>260</x>
+                            <y>330</y>
+                            <width>100</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Unmap</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>pushButton4_2_3</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>330</y>
+                            <width>110</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Copy to DTS</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>pushButton4_3</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>140</x>
+                            <y>330</y>
+                            <width>110</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Mirror with DTS</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>pushButton4_2</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>20</x>
+                            <y>670</y>
+                            <width>110</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Copy to P4</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>pushButton4</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>140</x>
+                            <y>670</y>
+                            <width>110</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Mirror with P4</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>pushButton4_2_2</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>260</x>
+                            <y>670</y>
+                            <width>100</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Unmap</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>pushButton4_2_2_3</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>510</x>
+                            <y>670</y>
+                            <width>100</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Unmap</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>pushButton4_4</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>390</x>
+                            <y>670</y>
+                            <width>110</width>
+                            <height>30</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>Edit Mapping</string>
+                    </property>
+                </widget>
+            </widget>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>Layout1</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>mapHelpButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Help</string>
+                    </property>
+                    <property name="accel">
+                        <string>F1</string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>mapSpacer1</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>mapOkButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="accel">
+                        <string></string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>true</bool>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>mapCancelButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property name="accel">
+                        <string></string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>mapOkButton</sender>
+        <signal>clicked()</signal>
+        <receiver>MapDialog</receiver>
+        <slot>accept()</slot>
+    </connection>
+    <connection>
+        <sender>mapCancelButton</sender>
+        <signal>clicked()</signal>
+        <receiver>MapDialog</receiver>
+        <slot>reject()</slot>
+    </connection>
+</connections>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

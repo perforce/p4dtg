@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<DTGConfiguration
+    version="1"
+    updated="2006/06/28 22:19:05 UTC">
+    <DataMapping
+        id="ttt"
+        scm_id="G"
+        dts_id="local"
+        mirror_conflicts="ERROR">
+        <FixRule
+            dts_field="text-2"
+            copy_type="APPEND"
+            file_list="0"
+            change_number="1"
+            description="0"
+            fixed_by="1"
+            fixed_date="1" />
+        <ScmToDtsRules>
+            <CopyRule
+                scm_field="Description"
+                dts_field="Description"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="List of Change Numbers"
+                dts_field="line-2"
+                copy_type="LINE"
+                truncate="0" />
+        </ScmToDtsRules>
+    </DataMapping>
+</DTGConfiguration>

@@ -1,0 +1,174 @@
+/*
+ * Copyright 2009 Perforce Software.  All rights reserved.
+ *
+ * This file is part of Perforce - the FAST SCM System.
+ */
+
+This file describes the format for XML requests and expected responses.
+
+All messages are sent as text with the length of the message in bytes prefixed
+to the message. This length does not include the characters required to specify
+the length. 
+
+Instead of the defined response, the following error can be sent
+	<ERROR CONTINUE="(0|1)" MESSAGE="messages" />
+
+Requests/Responses: (for clarity, the message length is ommited)
+-------------------
+ping() -> return "PONG" in STRINGS (tests connection)
+	<PING />
+
+	<STRINGS> <STRING VALUE="PONG" />
+
+connect() -> return randomString in STRINGS
+	<CONNECT />
+
+	<STRINGS> <STRING VALUE="randomString" />
+
+shutdown() -> return "CLOSING" in STRINGS (JVM exits)
+	<SHUTDOWN />
+
+	<STRINGS> <STRING VALUE="CLOSING" />
+
+login() -> return dID in STRINGS
+	<LOGIN />
+
+	<STRINGS> <STRING VALUE="dID" /> </STRINGS>
+
+get_server_version( dID ) -> return version in STRINGS
+	<GET_SERVER_VERSION DID="dID" />
+
+	<STRINGS> <STRING VALUE="serverVersion" /> </STRINGS>
+
+get_server_date( dID ) -> return date string in STRINGS
+	<GET_SERVER_DATE DID="dID" />
+
+	<STRINGS> <STRING VALUE="YYYY/MM/DD HH:MM:SS" /> </STRINGS>
+
+list_projects( dID ) -> return set of projects in STRINGS
+	<LIST_PROJECTS DID="dID" />
+
+	<STRINGS> <STRING VALUE="dID" /> </STRINGS>
+
+get_project( dID, project ) -> return projID in STRINGS
+	<GET_PROJECT DID="dID" PROJECT="projName|*All*" />
+
+	<STRINGS> <STRING VALUE="projID" /> </STRINGS>
+
+list_fields( projID ) -> return set of DESC
+	<LIST_FIELDS PROJID="projID" />
+
+	<DESCS> .... (see below) .... </DESCS>
+
+	Java side does not declare the '*Project*' field, this
+	is handled in the C++ side.
+
+segment_filters( projID, seg_filter, proj_names )
+	<SEGMENT_FILTERS 
+		PROJID="projID"
+		SEGMENT_FILTER="query_restriction|" 
+		PROJECT_LIST="projName1{,projName2,...}" /> 
+
+	<STRINGS> <STRING VALUE="OK" /> </STRINGS>
+
+	If SEGMENT_FILTER includes the field 'Status/Resolution' all
+	subsequent calls to list_defects will fail with the error:
+	"Segmentation on Status/Resolution field is not supported"
+
+referenced_fields( projID, fields... ) -> return "OK" in STRINGS
+	<REFERENCED_FIELDS 
+		PROJID="projID" 
+		F1="field1"
+		F2="field2"
+		...
+	/>
+
+	<STRINGS> <STRING VALUE="OK" /> </STRINGS>
+
+list_defects( projID, moddate, date, modby, user, max ) -> 
+					return defects in STRINGS
+	<LIST_DEFECTS 
+		PROJID="projID"
+		MODDATE="fieldName"
+		DATE="YYYY/MM/DD HH:MM:SS"
+		MODBY="fieldName"
+		USER="userName"
+		MAX="n entries, 0 = all"
+	/>
+
+	<STRING> 
+		<STRING VALUE="defect1" 
+		<STRING VALUE="defect2" 
+		...
+	/>
+
+new_defect( projID ) -> set of FIELD
+	<NEW_DEFECT PROJID="projID" />
+
+	<FIELDS> .... (see below) .... </FIELDS>
+
+	Java side will reject this call if the ProjID is '*All*'
+	Java side will add a field called '*Project*' which is the 
+	name of the project in which the defect resides.
+
+get_defect( projID, defect ) -> set of FIELD
+	<GET_DEFECT PROJID="projID" DEFECT="defectName" />
+
+	<FIELDS> .... (see below) .... </FIELDS>
+
+	Java side will add a field called '*Project*' which is the 
+	name of the project in which the defect resides.
+
+create_defect( defectID, fields ) -> return defect name in STRINGS
+	<CREATE_DEFECT>
+		<FIELD NAME="field1" VALUE="value1" />
+		<FIELD NAME="field2" VALUE="value2" />
+		...
+	<CREATE_DEFECT />
+
+	<STRINGS> <STRING value="defectName" /> </STRINGS>
+
+	Java side will reject this call if the ProjID is '*All*'
+	Java side will ignore the '*Project*' field if passed back
+	using this method.
+
+save_defect( defectID, fields ) -> return defect name in STRINGS
+	<SAVE_DEFECT />
+		<FIELD NAME="DEFECTID" VALUE="defectName" />
+		<FIELD NAME="field1" VALUE="value1" />
+		<FIELD NAME="field2" VALUE="value2" />
+		...
+	<SAVE_DEFECT />
+
+	<STRINGS> <STRING value="defectName" /> </STRINGS>
+
+	Java side will ignore the '*Project*' field if passed back
+	using this method.
+
+Responses:
+<STRINGS>
+	<STRING VALUE="val" />
+	...
+</STRINGS>
+
+<FIELDS>
+	<FIELD NAME="fieldN" VALUE="val1" />
+	...
+</FIELDS>
+
+<DESCS>
+	<DESC NAME="fieldN" 
+		TYPE="(word|line|text|date)" 
+		ACCESS="[0-4]"/>
+	...
+	<DESC NAME="field" 
+		TYPE="select"
+		ACCESS="[0-4]">
+	    <STRINGS
+		<STRING VALUE="opt1" />
+		...
+	    </STRINGS>
+	</DESC>
+	...
+
+<ERROR CONTINUE="0|1", MESSAGE="message1" />

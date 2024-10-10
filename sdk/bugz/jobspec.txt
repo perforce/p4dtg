@@ -1,0 +1,60 @@
+#
+# NOTE: THIS JOBSPEC REQUIRES p4d of 2008.1 or later
+#
+#
+# A Perforce Job Spec Specification.
+#
+#  Updating this form can be dangerous!
+#  See 'p4 help jobspec' for proper directions.
+#
+# EXAMPLE P4DTG MAPPING:
+#
+# Mirror: Bugzilla->Priority with Perforce->Priority
+#                 ->Severity with         ->Severity
+#                 ->Summary  with         ->Summary
+#           ->Status/Resolution with      ->Status
+# Copy from Bugzilla to Perforce
+#         Bugzilla->AssignedTo to Perforce->Owner
+#                 ->Description to        ->Description
+#                 ->Product to            ->Product
+# Copy from Perforce to Bugzilla
+#         Perforce->Fix Details to Bugzilla->Fixes
+#
+
+
+Fields:
+	101 Job word 32 required
+	170 Product word 10 optional
+	102 Status select 10 required
+	103 Owner word 32 optional
+	104 ModDate date 20 always
+	163 ModBy word 32 always
+	164 Created date 20 once
+	165 CreatedBy word 32 once
+	167 Severity select 10 optional
+	168 Summary line 60 optional
+	169 Priority select 10 optional
+	105 Description text 0 required
+	158 DTG_FIXES text 0 optional
+	160 DTG_DTISSUE word 32 optional
+	162 DTG_ERROR text 0 optional
+	166 DTG_MAPID word 0 optional
+
+Values:
+	Status UNCONFIRMED/CONFIRMED/IN_PROGRESS/VERIFIED-FIXED/VERIFIED-DUPLICATE/VERIFIED-WORKSFORME/VERIFIED-WONTFIX/VERIFIED-INVALID/RESOLVED-FIXED/RESOLVED-DUPLICATE/RESOLVED-WORKSFORME/RESOLVED-WONTFIX/RESOLVED-INVALID
+	Severity blocker/critical/major/normal/minor/trivial/enhancement
+	Priority Highest/High/Normal/Low/Lowest/---
+
+Presets:
+	Status UNCONFIRMED,fix/RESOLVED-FIXED
+	ModDate $now
+	ModBy $user
+	Created $now
+	CreatedBy $user
+	Description $blank
+
+Comments:
+	# DTG_FIXES	: DTG field specifying list of current fixes
+	# DTG_DTISSUE	: DTG field specifying DT identifier for replication
+	# DTG_ERROR	: DTG field specifying an error state for replication
+

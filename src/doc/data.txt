@@ -1,0 +1,32 @@
+DataSource:
+	id:
+	type:[scm|dts]
+	nickname:
+	server:
+	user:
+	password:
+	project:
+	key_field:
+	moddate_field:
+	moduser_field:
+	admin_user:
+	new_field:
+	new_rules: <pattern: datasource:>*
+
+MappingSet
+	scm_id:
+	dts_id:
+	fix_rules:
+		dts_field:
+		copy_action:[append|replace]
+		parts: <filelist|changenumber|description|madeby|date>+
+
+	mirror_conflict: [scm|dts|newer|error]
+	mirror_rules:
+	scm_to_dts_rules:
+	dts_to_scm_rules:
+		scm_field:
+		dts_field:
+		copy_action:[all|word|line|map]
+		mappings: <value1: value2>* // from->to, scm-dts for mirror
+

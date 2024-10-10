@@ -1,0 +1,49 @@
+EXAMPLE FRAMEWORK FOR A TCP-PROXY WEB-SERVICES PLUG-IN FOR P4DTG
+================================================================================
+This is the framework for creating a proxy for use with P4DTG to integrate with
+a defect tracking system which provides web services through REST interfaces.
+This should not be used in production.
+
+If you are taking this approach, you need to specialize this example for your
+Defect Tracking System and create a uniquely named DLL/SO and plug-in name.
+There is not just one TcpXML plug-in which is used for all Defect Trackers which
+use this approach.
+
+Most of your work will be done in the request handler (see jira-rest/ folder for
+examples). The only real changes needed for the plug-in are changing the module
+name, version and such, and adding any additional attributes that are needed.
+
+DTG-mod-jirarest.cc     C++ implementation of the required interface
+                        This file should pretty much be used as is
+CMakeLists.txt          Cmake build definition file
+MyDTG.h                 C++ Class definition file for the MyDTG, MyDTGProj,
+                        MyDTGDefect classes. Add additional attributes and
+                        methods as needed by the plugin have been added
+MyDTG.cc                C++ implementation of the class encapsulating
+                        the base Defect Tracking System
+MyDTGDefect.cc          C++ implementation of the class encapsulating
+                        specific 'Defects'
+MyDTGProj.cc            C++ Class definition file for the MyDTGProj class
+                        encapsulating specific 'Projects' within a defect
+                        tracking system installation.
+MyDTS.h                 C++ class encapsulating the defect tracking system's
+                        api to provide the information necessary for the
+                        plugin.
+MyDTS.cc                C++ implementation of the MyDTS class
+
+DTG-XML.txt             Description of the XML requests / responses
+
+TcpXML.h                Definition of the TCP encapsulation of XML requests
+TcpXML.cc               Implementation of the TCP encapsulation of XML requests
+
+java/                   Directory containing the Java-side of a DTG-XML
+                        request handler
+
+README.rest.src         This file
+
+tinystr.cpp             TinyXML source file, please read for license information
+tinystr.h               TinyXML source file, please read for license information
+tinyxml.cpp             TinyXML source file, please read for license information
+tinyxml.h               TinyXML source file, please read for license information
+tinyxmlerror.cpp        TinyXML source file, please read for license information
+tinyxmlparser.cpp       TinyXML source file, please read for license information

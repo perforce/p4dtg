@@ -1,0 +1,536 @@
+<?xml version="1.0" ?>
+<DTGConfiguration
+    version="1"
+    updated="2006/06/05 17:47:58 UTC">
+    <DataMapping
+        id="QCmap"
+        scm_id="P4depot"
+        dts_id="JW"
+        mirror_conflicts="ERROR">
+        <DtsToScmRules>
+            <CopyRule
+                scm_field="text-o"
+                dts_field="BG_USER_12"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-iw"
+                dts_field="BG_USER_11"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-it"
+                dts_field="BG_USER_HR_06"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-is"
+                dts_field="BG_USER_HR_05"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-il"
+                dts_field="BG_USER_HR_04"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-ifr"
+                dts_field="BG_USER_HR_03"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-o"
+                dts_field="BG_USER_HR_02"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-iw"
+                dts_field="BG_USER_HR_01"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-ifa"
+                dts_field="BG_USER_10"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-id"
+                dts_field="BG_USER_09"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="date-id"
+                dts_field="Modified"
+                copy_type="DATE"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-i2w"
+                dts_field="BG_USER_08"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-i2t"
+                dts_field="BG_USER_07"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-i2s"
+                dts_field="BG_USER_06"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-i2l"
+                dts_field="Category"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-o"
+                dts_field="Regression"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-iw"
+                dts_field="Language"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="select-n-o"
+                dts_field="Browser"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="Netscape 7.02"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 7.01"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 7.0x"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 6.2.3"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 6.2.2"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 6.2.1"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 6.1"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 6.2"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 6.01"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 6.x"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 4.8"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 4.79"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 4.78"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 4.77"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 4.76"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 4.7x"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 4.61"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 4.51"
+                    value2="s85" />
+                <CopyMap
+                    value1="Netscape 4.08"
+                    value2="s85" />
+                <CopyMap
+                    value1="Internet Explorer 6.0 SP1"
+                    value2="s84" />
+                <CopyMap
+                    value1="Internet Explorer 6.0"
+                    value2="s84" />
+                <CopyMap
+                    value1="Internet Explorer 5.5 SP2"
+                    value2="s83" />
+                <CopyMap
+                    value1="Internet Explorer 5.5 SP1"
+                    value2="s83" />
+                <CopyMap
+                    value1="Internet Explorer 5.5"
+                    value2="s83" />
+                <CopyMap
+                    value1="Internet Explorer 5.01 SP2"
+                    value2="s83" />
+                <CopyMap
+                    value1="Internet Explorer 5.01 SP1"
+                    value2="s83" />
+                <CopyMap
+                    value1="Internet Explorer 5.0x"
+                    value2="s83" />
+                <CopyMap
+                    value1="Internet Explorer 4.01 SP2"
+                    value2="s82" />
+                <CopyMap
+                    value1="Internet Explorer 4.01 SP1"
+                    value2="s82" />
+                <CopyMap
+                    value1="Internet Explorer 4.01"
+                    value2="s82" />
+                <CopyMap
+                    value1="Netscape"
+                    value2="s81" />
+                <CopyMap
+                    value1="Internet Explorer"
+                    value2="s81" />
+            </CopyRule>
+            <CopyRule
+                scm_field="line-it"
+                dts_field="BG_USER_01"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="select-n-is"
+                dts_field="To Mail"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="Y"
+                    value2="s75" />
+                <CopyMap
+                    value1="N"
+                    value2="s71" />
+            </CopyRule>
+            <CopyRule
+                scm_field="line-is"
+                dts_field="BG_TEXT_SYNC"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-it"
+                dts_field="Test Reference"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-il"
+                dts_field="Summary"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-is"
+                dts_field="Subject"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-il"
+                dts_field="Step Reference"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="Status"
+                dts_field="Status"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="Reopen"
+                    value2="open" />
+                <CopyMap
+                    value1="Open"
+                    value2="open" />
+                <CopyMap
+                    value1="New"
+                    value2="open" />
+                <CopyMap
+                    value1="Rejected"
+                    value2="closed" />
+                <CopyMap
+                    value1="Fixed"
+                    value2="closed" />
+                <CopyMap
+                    value1="Closed"
+                    value2="closed" />
+            </CopyRule>
+            <CopyRule
+                scm_field="select-n-i2s"
+                dts_field="Severity"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="5-Urgent"
+                    value2="s65" />
+                <CopyMap
+                    value1="4-Very High"
+                    value2="s64" />
+                <CopyMap
+                    value1="3-High"
+                    value2="s63" />
+                <CopyMap
+                    value1="2-Medium"
+                    value2="s62" />
+                <CopyMap
+                    value1="1-Low"
+                    value2="s61" />
+            </CopyRule>
+            <CopyRule
+                scm_field="word-ifr"
+                dts_field="Run Reference"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-ifr"
+                dts_field="Assigned To"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-ifa"
+                dts_field="ITG Request Type"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-id"
+                dts_field="ITG Server URL"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-i2d"
+                dts_field="ITG Request Note"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-ifa"
+                dts_field="ITG Request Id"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-i2w"
+                dts_field="Reproducible"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="select-m-o"
+                dts_field="Project"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="Mercury Tours Administration"
+                    value2="s43" />
+                <CopyMap
+                    value1="Mercury Tours (Java Edition)"
+                    value2="s42" />
+                <CopyMap
+                    value1="Mercury Tours (HTML Edition)"
+                    value2="s41" />
+            </CopyRule>
+            <CopyRule
+                scm_field="select-n-2"
+                dts_field="Priority"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="5-Urgent"
+                    value2="s55" />
+                <CopyMap
+                    value1="4-Very High"
+                    value2="s54" />
+                <CopyMap
+                    value1="3-High"
+                    value2="s53" />
+                <CopyMap
+                    value1="2-Medium"
+                    value2="s52" />
+                <CopyMap
+                    value1="1-Low"
+                    value2="s51" />
+            </CopyRule>
+            <CopyRule
+                scm_field="select-m-is"
+                dts_field="Planned Closing Version"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="Java Version 1.01"
+                    value2="s33" />
+                <CopyMap
+                    value1="Future Java Versions"
+                    value2="s33" />
+                <CopyMap
+                    value1="Java Edition Versions"
+                    value2="s33" />
+                <CopyMap
+                    value1="Version 1.01"
+                    value2="s32" />
+                <CopyMap
+                    value1="Version 1.0"
+                    value2="s32" />
+                <CopyMap
+                    value1="Future Versions"
+                    value2="s32" />
+                <CopyMap
+                    value1="HTML Edition Versions"
+                    value2="s32" />
+                <CopyMap
+                    value1="Administration Version 1.01"
+                    value2="s31" />
+                <CopyMap
+                    value1="Administration Version 1.0"
+                    value2="s31" />
+                <CopyMap
+                    value1="Administration Versions"
+                    value2="s31" />
+            </CopyRule>
+            <CopyRule
+                scm_field="line-i2t"
+                dts_field="Has Change"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-i2s"
+                dts_field="Extended Reference"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-i2w"
+                dts_field="Estimated Fix Time"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="text-2"
+                dts_field="Comments"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="select-m-i2s"
+                dts_field="Detected in Version"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="Version 1.01"
+                    value2="s22" />
+                <CopyMap
+                    value1="Version 1.0"
+                    value2="s22" />
+                <CopyMap
+                    value1="Future Versions"
+                    value2="s22" />
+                <CopyMap
+                    value1="HTML Edition Versions"
+                    value2="s22" />
+                <CopyMap
+                    value1="Java Version 1.01"
+                    value2="s23" />
+                <CopyMap
+                    value1="Future Java Versions"
+                    value2="s23" />
+                <CopyMap
+                    value1="Java Edition Versions"
+                    value2="s23" />
+                <CopyMap
+                    value1="Administration Version 1.01"
+                    value2="s21" />
+                <CopyMap
+                    value1="Administration Version 1.0"
+                    value2="s21" />
+                <CopyMap
+                    value1="Administration Versions"
+                    value2="s21" />
+            </CopyRule>
+            <CopyRule
+                scm_field="date-i2d"
+                dts_field="Detected on Date"
+                copy_type="DATE"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-i2l"
+                dts_field="Detected By"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="Description"
+                dts_field="Description"
+                copy_type="TEXT"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-i2d"
+                dts_field="TestSet Reference"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-i2t"
+                dts_field="Cycle ID"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="select-m-2"
+                dts_field="Closed in Version"
+                copy_type="MAP"
+                truncate="0">
+                <CopyMap
+                    value1="Java Version 1.01"
+                    value2="s13" />
+                <CopyMap
+                    value1="Future Java Versions"
+                    value2="s13" />
+                <CopyMap
+                    value1="Java Edition Versions"
+                    value2="s13" />
+                <CopyMap
+                    value1="Version 1.01"
+                    value2="s12" />
+                <CopyMap
+                    value1="Version 1.0"
+                    value2="s12" />
+                <CopyMap
+                    value1="Future Versions"
+                    value2="s12" />
+                <CopyMap
+                    value1="HTML Edition Versions"
+                    value2="s12" />
+                <CopyMap
+                    value1="Administration Version 1.01"
+                    value2="s11" />
+                <CopyMap
+                    value1="Administration Version 1.0"
+                    value2="s11" />
+                <CopyMap
+                    value1="Administration Versions"
+                    value2="s11" />
+            </CopyRule>
+            <CopyRule
+                scm_field="date-2"
+                dts_field="Closing Date"
+                copy_type="DATE"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-i2s"
+                dts_field="Version Stamp"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-i2l"
+                dts_field="Defect ID"
+                copy_type="WORD"
+                truncate="0" />
+            <CopyRule
+                scm_field="line-2"
+                dts_field="Attachment"
+                copy_type="LINE"
+                truncate="0" />
+            <CopyRule
+                scm_field="word-2"
+                dts_field="Actual Fix Time"
+                copy_type="WORD"
+                truncate="0" />
+        </DtsToScmRules>
+    </DataMapping>
+</DTGConfiguration>

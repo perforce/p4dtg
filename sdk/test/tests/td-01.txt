@@ -1,0 +1,18 @@
+ln
+lv
+ln
+ln
+ln
+lc http://win-jwalker:8081/qcbin sa manager
+sl
+sf
+lc http://win-jwalker:8081/qcbin sa manager
+sl
+sp DEFAULT:QualityCenter_Demo
+ps
+pf
+sf
+lc http://win-jwalker:8081/qcbin sa manager
+sl
+sp DEFAULT:QualityCenter_Demo
+q

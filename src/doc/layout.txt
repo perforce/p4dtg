@@ -1,0 +1,48 @@
+DTG_ROOT/
+	plugins/
+		p4jobs.(so|dll)    -- P4 SCM (or DTS)
+		p4generic.(so|dll) -- Demo Jobs as DTS
+		mercurytd.dll      -- Mercury Test Director
+	help/
+		*.html             -- Help files
+		about.html         -- Dynamically generated
+	config/
+		src-<name>.xml     -- DataSource description
+		map-<name>.xml     -- DataMapping description
+		set-<name>.xml     -- Unify settings for DataMapping
+	unify/
+		run-<name>         -- Mapping is running
+		stop-<name>        -- Request to stop mapping
+
+	log-<name>.txt             -- Log file for unification of map <name>
+
+Each DataSource and DataMapping is uniquely identified by
+a case-insensitive name. This name is used to name the various
+files as shown above.
+	name: [a-zA-Z0-9][a-zA-Z0-9_]{0,15}
+
+Process Status and Control:
+
+	unify startup:
+		if run-<name> exists, then exit w/ error
+		if stop-<name> exists, then remove it
+		create run-<name>
+		read set-<name>
+		run...
+
+	unify running:
+		if stop-<name> exists, then 
+			remove run-<name> and exit /w notice
+		if run-<name> does not exist, then
+			recreate it
+
+run stop unify
+0   0    0	unify is not running
+1   0    1	unify is running
+0   1    0	unify has been stopped
+1   1    1	waiting for unify to stop
+
+0   0    1	warning: unify should recreate run-
+1   0    0	error: unify died unexpectedly, manually delete run-
+0   1    1	error: unify has hung, manually kill unify
+1   1    0	error: unify died unexpectedly, manually delete run-
